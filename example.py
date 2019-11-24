@@ -1,5 +1,4 @@
 class mt:
-    number_of_state = 1     # номер состояния, 2, 3 и т.д.
     direction = '>'         # направление, в которое двигаемся , может быть >, <, stop
     letter = '1'            # буква, которую мы сейчас рассматриваем
     cursor = 1              # курсор , то что бегает по строке
@@ -23,7 +22,9 @@ class mt:
             self.letter = '1'
         else:   # если достигнута лямбда, переходим в состояние два и возвращаем каретку наместо
             self.direction = '<'
-            self.number_of_state = 2
+            self.number_of_state = self.second_condition
+
+    number_of_state = first_condition  # номер состояния, 2, 3 и т.д.
 
     def second_condition(self):   # вторая операция
         if self.letter == 'L':  # если достигнута лямбда, переходим останавливаем машину
@@ -35,11 +36,7 @@ class mt:
 
         while True:
             self.letter = word[self.cursor]
-
-            if self.number_of_state == 1:   # первое ссостояние
-                self.first_condition()     # tmp - переменная бегунок, возвращаемая состоянием
-            elif self.number_of_state == 2:     # второе состяние
-                self.second_condition()
+            self.number_of_state()
             word[self.cursor] = self.letter
             # print(word, tmp)
             if self.direction == '>':
@@ -47,8 +44,7 @@ class mt:
             elif self.direction == '<':
                 self.cursor -= 1
             else:   # если L
-                break
-        return ''.join(word[1:-1])
+                return ''.join(word[1:-1])
 
 
 if __name__ == '__main__':
