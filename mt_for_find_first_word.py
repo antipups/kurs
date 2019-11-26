@@ -1,10 +1,13 @@
 from mt import mt
-from mt_for_find_amount_litter_in_one_word import mt_for_find_amount_litter_in_one_word
+
+
+"""
+    Машина тьюринга которая получает результаты первой мт(выводит кол-во букв в одном слово),
+    вырезает и выводит ПЕРВОЕ слово из слова веденным пользователем.
+"""
 
 
 class mt_for_find_first_word(mt):
-
-    all_new_letter = ('!', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '*')
 
     def first_condition(self):
         self.direction = '>'
@@ -66,10 +69,4 @@ class mt_for_find_first_word(mt):
 
 
 if __name__ == '__main__':
-    word = 'abcccc'
-    amount_of_characters = mt_for_find_amount_litter_in_one_word().heart(word='L' + '00!' + word + 'L', cursor=3)
-    if not amount_of_characters:
-        print('Ввел хуйню')
-    else:
-        print(mt_for_find_first_word().heart(word='L' + amount_of_characters + '!' + word + 'L', cursor=3))
-        print('Вышло')
+    pass

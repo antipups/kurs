@@ -11,8 +11,6 @@ from mt import mt
 
 class mt_for_find_amount_litter_in_one_word(mt):
 
-    all_new_letter = ('!', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '*')
-
     def first_condition(self):
         if self.letter in mt.tuple_alfabet:
             self.letter = '*'
