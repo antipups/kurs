@@ -6,12 +6,21 @@ from mt import mt
     естественно, получаем кол-во букв в одном слове, если конечно это слово по длине удовлетворяет условию,
     то есть кол-во букв в веденном от юзера слове четное кол-во, иначе выводит ничего, и длина списка = 0
     что и является первой проверкой на корректность ввода правильного слова.
+    
+    Как работает:
+            Двигается вправо и считает кол-во символов попутно помечая прочитанные буквы звездой,
+        после, стирает все буквы и пишет четное это число или нет, если оно нечетное
+        (что не удовлетворяет условию) затираем всё и оставляем ноль, если же четное, делим кол-во
+        букв на 2, и получаем число которое означает кол-во букв в одном слове.
 """
 
 
 class mt_for_find_amount_litter_in_one_word(mt):
 
     def first_condition(self):
+        """
+            Нашли букву, пометили.
+        """
         if self.letter in mt.tuple_alfabet:
             self.letter = '*'
             self.direction = '<'
@@ -23,6 +32,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.fifth_condition
 
     def second_condition(self):
+        """
+            Идем до воскл. знака
+        """
         self.direction = '<'
         if self.letter == '!':
             self.number_of_state = self.third_condition
@@ -30,6 +42,11 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.second_condition
 
     def third_condition(self):
+        """
+            Увеличиваем цифру возле воскл. знака, или же если она 9,
+            то ставим 0 двигаем головку влево и увеличиваем там цифру на 1,
+            далее всё заного
+        """
         if self.letter in self.all_new_letter[1:-2]:
             self.letter = str(int(self.letter) + 1)     # получаем цифру на которой стоит и прибавляем 1 если это не 9
             self.direction = '>'
@@ -39,17 +56,29 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.direction = '<'
 
     def fourth_condition(self):
+        """
+            Затираем звёздочки
+        """
         self.direction = '>'
         if self.letter == 'L':
             self.number_of_state = self.tenth_condition
         self.letter = 'L'
 
     def fifth_condition(self):
+        """
+            Доходим до воскл. знака.
+        """
         self.direction = '<'
         if self.letter == '!':
             self.number_of_state = self.sixth_condition
 
     def sixth_condition(self):
+        """
+            В зависимости от того какое это число переходим в некст состояние
+            0 -> q9
+            нечетное -> q7
+            чётное -> q8
+        """
         self.direction = '>'
         if self.letter in ('1', '3', '5', '7', '9',):
             self.number_of_state = self.seventh_condition
@@ -60,18 +89,28 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.ninth_condition
 
     def seventh_condition(self):
+        """
+            Нечетное число, значит пользователь по длине ввел плохое слово.
+        """
         self.direction = '>'
         if self.letter == self.all_new_letter[-1]:
             self.letter = '0'
             self.number_of_state = self.fourth_condition
 
     def eighth_condition(self):
+        """
+            Четное число, значит продолжаем работу.
+        """
         self.direction = '>'
         if self.letter == self.all_new_letter[-1]:
             self.letter = '1'
             self.number_of_state = self.fourth_condition
 
     def ninth_condition(self):
+        """
+            Если десяток, 0 то нечетное, если же он есть
+            то четное.
+        """
         self.direction = '>'
         if self.letter == self.all_new_letter[2:-1]:
             self.number_of_state = self.eighth_condition
@@ -79,12 +118,20 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.seventh_condition
 
     def tenth_condition(self):
+        """
+            Идем до воскл. и смотри на цифру возле него.
+        """
         self.direction = '<'
         if self.letter == '!':
             self.direction = '>'
             self.number_of_state = self.eleventh_condition
 
     def eleventh_condition(self):
+        """
+            Смотрим на число:
+                0 - нечетное -> q18
+                1 - четное -> q12
+        """
         self.direction = '<'
         if self.letter == '0':
             self.number_of_state = self.eighteenth_condition
@@ -92,6 +139,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.twelfth_condition
 
     def twelfth_condition(self):
+        """
+            Двигаемся к числу, а именно в самое начало слова.
+        """
         self.direction = '<'
         if self.letter == 'L':
             self.direction = '>'
