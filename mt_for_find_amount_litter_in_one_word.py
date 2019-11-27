@@ -148,6 +148,10 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.thirteenth_condition
 
     def thirteenth_condition(self):
+        """
+            Делит десяток, и в зависимости от него двигается либо в
+            14-ое состояние либо в 15-ое, в 15-ое если не четный (30, 50)
+        """
         self.direction = '>'
         if self.letter in ('0', '2', '4', '6', '8'):
             if self.letter == '0':
@@ -175,6 +179,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.fifteenth_condition
 
     def fourteenth_condition(self):
+        """
+            Делит четное число пополам.
+        """
         self.direction = '>'
         self.number_of_state = self.sixteenth_condition
         if self.letter in ('2', '4', '6', '8'):
@@ -188,6 +195,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
                 self.letter = '4'
 
     def fifteenth_condition(self):
+        """
+            Делит нечетное пополам.
+        """
         self.direction = '>'
         self.number_of_state = self.sixteenth_condition
         if self.letter in ('0', '2', '4', '6', '8'):
@@ -203,6 +213,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
                 self.letter = '9'
 
     def sixteenth_condition(self):
+        """
+            Затирает всё остальное кроме числа.
+        """
         if self.letter == '!':
             self.letter = '*'
             self.direction = '>'
@@ -212,6 +225,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.seventeenth_condition
 
     def seventeenth_condition(self):
+        """
+            Затирает всё остальное кроме числа..
+        """
         if self.letter in self.all_new_letter[1:]:
             if self.letter == '*':
                 self.letter = 'L'
@@ -220,6 +236,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.direction = 'stop'
 
     def eighteenth_condition(self):
+        """
+            Если кол-во букв нечётное, то оставляем 0.
+        """
         if self.letter in self.all_new_letter[:-1]:
             self.letter = 'L'
             self.direction = '<'
@@ -228,6 +247,9 @@ class mt_for_find_amount_litter_in_one_word(mt):
             self.number_of_state = self.nineteenth_condition
 
     def nineteenth_condition(self):
+        """
+            Если кол-во букв нечётное, затираем всё кроме 0.
+        """
         self.direction = '>'
         if self.letter == '0':
             self.direction = 'stop'

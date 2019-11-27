@@ -1,4 +1,5 @@
 class mt:
+    result_word = str()
     tuple_alfabet = ('a', 'b', 'c')     # кортеж с литерами принадлежащим алфавиту
     number_of_state = 1     # номер состояния, 2, 3 и т.д, позже first_condition , second,
                             # тем самым меняя указатели на функции
@@ -98,5 +99,6 @@ class mt:
                         word.pop(word.index('L'))   # удаляем L пока видим её
                     except ValueError:
                         break
-                return ''.join(word)      # выходим из машины, соединяем полученное на выходе слово в строку
-                                          # и возвращаем его
+                self.result_word = ''.join(word)   # выходим из машины, соединяем полученное на выходе слово в строку
+                                                   # и возвращаем его
+                return
