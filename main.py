@@ -1,5 +1,7 @@
 import re
 import threading
+import time
+
 import functional
 from kivy.config import Config
 Config.set('graphics', 'left', '28')
@@ -16,7 +18,7 @@ from kivy.uix.textinput import TextInput
 import animation1
 
 
-class FloatInput(TextInput):    # переписанный текст инпут, для того чтоб вводили только a b или c
+class AlfabInput(TextInput):    # переписанный текст инпут, для того чтоб вводили только a b или c
 
     pat = re.compile('[^a-c]')
 
@@ -26,20 +28,24 @@ class FloatInput(TextInput):    # переписанный текст инпут
             s = re.sub(pat, '', substring)
         else:
             s = '.'.join([re.sub(pat, '', s) for s in substring.split('.', 1)])
-        return super(FloatInput, self).insert_text(s, from_undo=from_undo)
+        return super(AlfabInput, self).insert_text(s, from_undo=from_undo)
 
 
 class MyApp(App):
     def build(self):
         def create_window(instance):
+            if not text_input.text:
+                return
             threading.Thread(target=animation1.draw, daemon=True).start()
+            time.sleep(1)
             text_input.text, text_input.foreground_color = functional.run(text_input.text)
         box_layout = BoxLayout(orientation='vertical')
-        text_input = FloatInput(hint_text="Введите желаемое слово:",
+        text_input = AlfabInput(hint_text="Введите желаемое слово:",
                                 multiline=False,
-                                on_text_validate=create_window)
+                                on_text_validate=create_window,
+                                )
         button = Button(text='Проверить',
-                        on_press=create_window)
+                        on_release=create_window)
         box_layout.add_widget(text_input)
         box_layout.add_widget(button)
         return box_layout

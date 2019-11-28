@@ -7,7 +7,11 @@ from mt_for_find_second_word import mt_for_find_second_word
 
 
 """
-    Здесь вся композиция машин, распоточивание и прочее.
+        При входе, слово попадает в первую машину в которой узнает сколько сиволов в одном слове,
+    если кол-во символов нечетное, выдает 0, выходим, если четное то идем дальше, в след.
+    две мт, которые достают отдельно 2 слова, на разных лентах в разных потоках, после завершения
+    работы этих машин, эти два слова подаются в последнюю машину, которая уже сверяет реверс это
+    или нет.
 """
 
 
@@ -30,12 +34,15 @@ def run(word):
         t2.join()   # ставим некий wait, пока потоки не отработают основной поток стоит
         first_word = first_mt.result_word
         second_word = second_mt.result_word
-        print('Первое слово - ' + first_word)
-        print('Второе слово - ' + second_word)
+        # print('Первое слово - ' + first_word)
+        # print('Второе слово - ' + second_word)
         current_mt = mt_for_check_words()
         current_mt.heart(word='L' + first_word + '*' + second_word + 'L', cursor=1)
-        print('Задача - ' + current_mt.result_word)
-        return 'Слово подходит', [0, .75, 0, 1]
+        # print('Задача - ' + current_mt.result_word)
+        if current_mt.result_word == '0':
+            return 'Слово не подходит', [1, 0, 0, 1]
+        else:
+            return 'Слово подходит', [0, .75, 0, 1]
 
 
 if __name__ == '__main__':
