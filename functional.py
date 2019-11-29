@@ -33,11 +33,9 @@ def generate():
                     word = ''.join(word)
                     return 'a' + word
     word = 'a'  # начальное слово
-    amount_of_word = 1
     while True:
         word = plus(word)   # генерируем новое слово на основе старого
-        run(amount_of_word, word + ''.join(reversed(word)))  # заносим сгенерированное слово в функцию решения задачи
-        amount_of_word += 1
+        run('-ob', word + ''.join(reversed(word)))  # заносим сгенерированное слово в функцию решения задачи
 
 
 """
@@ -49,8 +47,8 @@ def generate():
 """
 
 
-def run(amount_of_words, word):     # word - само слово, amount_of_steps - кол-во шагов
-    print(word)
+def run(color, word):     # word - само слово, amount_of_steps - кол-во шагов
+    print(color, word)
     amount_of_steps = 0
     # print('Входящее слово - ' + word)
     current_mt = mt_for_find_amount_litter_in_one_word()
@@ -80,7 +78,7 @@ def run(amount_of_words, word):     # word - само слово, amount_of_step
         # print('Задача - ' + current_mt.result_word)
         # time.sleep(1)
         with open('sample.txt', 'a') as f:
-            f.write('\n' + str(len(word)) + ',' + str(amount_of_steps) + '\n')
+            f.write('\n' + str(len(word)) + ',' + str(amount_of_steps) + ',' + color + '\n')
         if current_mt.result_word == '0':
             return 'Слово не подходит', [1, 0, 0, 1]
         else:

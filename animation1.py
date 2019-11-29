@@ -13,14 +13,15 @@ def draw():
         dataArray = pullData.split('\n')    # далее достаем данные
         xar = []
         yar = []
+        color = str()
         for eachLine in dataArray:
             if len(eachLine) > 2:
-                x, y = eachLine.split(',')
+                x, y, color = eachLine.split(',')
                 xar.append(int(x))  # засовываем в список иксов
                 yar.append(int(y))  # засовываем в список игриков
 
         ax1.clear()  # очищаем, чтобы каждый раз, когда обновляется, картинка рисовалась с нуля, а не поверх старой
-        ax1.plot(xar, yar)
+        ax1.plot(xar, yar, color)
 
     ani = animation.FuncAnimation(fig, animate, interval=1000)  # строим, график. Интервал 5 секунд
     plt.show()

@@ -37,7 +37,7 @@ class MyApp(App):
                 text_input.hint_text_color = [1, 0, 0, 1]
                 text_input.hint_text = 'Введите НОРМАЛЬНОЕ слово.'
                 return
-            text_input.hint_text, text_input.hint_text_color = functional.run(0, text_input.text)
+            text_input.hint_text, text_input.hint_text_color = functional.run('-*k', text_input.text)
             text_input.text = ''
         box_layout = BoxLayout(orientation='vertical')
         text_input = AlfabInput(hint_text="Введите желаемое слово:",
