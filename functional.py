@@ -13,7 +13,7 @@ def generate():
         elif word[-1] == 'b':               # cbb -> cbc
             return word[:-1] + 'c'
         elif word[-1] == 'c':
-            word = word[:-1] + 'a'          # cbc -> cba
+            word = word[:-1] + 'a'          # cbc -> cba*
             i = 2   # индекс элемента которого меняем
             while True:
                 try:
@@ -25,20 +25,19 @@ def generate():
                         word = list(word)
                         word[-i] = 'c'
                         return ''.join(word)
-                    elif word[-i] == 'c':       # cca
+                    elif word[-i] == 'c':
                         word = list(word)
-                        word[-i] = 'a'          # aaa
-                        i += 1
-                except IndexError:
+                        word[-i] = 'a'
+                        i += 1  # переходим на след. букву, если ещё раз выпала c: bcfcCa - > bcfCaa
+                except IndexError:  # если слово полностью обновляется (ccc) добавляем новый элемент в начало (aaaa)
                     word = ''.join(word)
                     return 'a' + word
-    word = 'a'
-    time.sleep(5)
-    i = 1
+    word = 'a'  # начальное слово
+    amount_of_word = 1
     while True:
-        word = plus(word)
-        run(i, word)
-        i += 1
+        word = plus(word)   # генерируем новое слово на основе старого
+        run(amount_of_word, word + ''.join(reversed(word)))  # заносим сгенерированное слово в функцию решения задачи
+        amount_of_word += 1
 
 
 """
@@ -51,6 +50,7 @@ def generate():
 
 
 def run(amount_of_words, word):     # word - само слово, amount_of_steps - кол-во шагов
+    print(word)
     amount_of_steps = 0
     # print('Входящее слово - ' + word)
     current_mt = mt_for_find_amount_litter_in_one_word()
@@ -80,7 +80,7 @@ def run(amount_of_words, word):     # word - само слово, amount_of_step
         # print('Задача - ' + current_mt.result_word)
         # time.sleep(1)
         with open('sample.txt', 'a') as f:
-            f.write('\n' + str(amount_of_words) + ',' + str(amount_of_steps) + '\n')
+            f.write('\n' + str(len(word)) + ',' + str(amount_of_steps) + '\n')
         if current_mt.result_word == '0':
             return 'Слово не подходит', [1, 0, 0, 1]
         else:
