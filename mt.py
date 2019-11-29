@@ -1,5 +1,6 @@
 class mt:
-    result_word = str()
+    result_word = str()     # результирующее слово
+    amount_of_steps = 0     # кол-во шагов для достижения целей
     tuple_alfabet = ('a', 'b', 'c')     # кортеж с литерами принадлежащим алфавиту
     number_of_state = 1     # номер состояния, 2, 3 и т.д, позже first_condition , second,
                             # тем самым меняя указатели на функции
@@ -83,7 +84,7 @@ class mt:
         self.cursor = cursor    # с какой позиции стартовать, мт не всегда стартует с первой позиции
         word = list(word)   # преобразуем строку в список
         while True:     # бесконечный цикл, это и есть некая головка, которая будет ходить по литерам
-            # print(word)
+            self.amount_of_steps += 1
             try:
                 self.letter = word[self.cursor]      # получаем литеру на которой стоит головка
             except IndexError:  # если произошел выход за строку
