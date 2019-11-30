@@ -54,7 +54,7 @@ class MyApp(App):
 
 
 if __name__ == '__main__':
-    open('sample.txt', 'w').close()     # пересоздаем файл
-    threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
-    threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
+    # open('sample.txt', 'w').close()     # пересоздаем файл
+    # threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
+    # threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
     MyApp().run()   # запускаем основное окно с основной задачей
