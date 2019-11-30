@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import functional
 
 
 def draw():
     fig = plt.figure()
+    plt.get_current_fig_manager().window.wm_geometry('+320+20')     # расположение окна
     ax1 = fig.add_subplot(1, 1, 1)
 
     def animate(i):
@@ -23,7 +23,7 @@ def draw():
         ax1.clear()  # очищаем, чтобы каждый раз, когда обновляется, картинка рисовалась с нуля, а не поверх старой
         ax1.plot(xar, yar, color)
 
-    ani = animation.FuncAnimation(fig, animate, interval=1000)  # строим, график. Интервал 5 секунд
+    ani = animation.FuncAnimation(fig, animate, interval=3000)  # строим, график. Интервал 5 секунд
     plt.show()
 
 

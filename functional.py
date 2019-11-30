@@ -1,5 +1,4 @@
 import threading
-import time
 from mt_for_check_words import mt_for_check_words
 from mt_for_find_amount_litter_in_one_word import mt_for_find_amount_litter_in_one_word
 from mt_for_find_first_word import mt_for_find_first_word
@@ -7,6 +6,19 @@ from mt_for_find_second_word import mt_for_find_second_word
 
 
 def generate():
+    """
+            Генератор работает так, на вход в функцию plus подается слово,
+        и далее как обычная система сложения в столбик, мы смотрим на полсдений
+        элемент входного слова, и увеличиваем его на 1, то есть если была буква
+        a мы меняем её на b и выходим, тоже самое с b, но с c, мы меняем её на a
+        и просматриваем элемент находящий левее, и увеличиваем его.
+        Пример:
+            aba -> abb      # т.к. последняя a, мы её меняем на b
+            abb -> abc      # т.к. последняя b, мы меняем её на c
+            abc -> aca      # т.к. последняя c, мы меняем её на a, и также затрагиваем букву левее
+            ...
+            ccc -> aaaa     # т.к. все буквы c, мы меняем каждую на a и потом добавляем a в начало строки
+    """
     def plus(word):     # генератор слов
         if word[-1] == 'a':                 # cba -> cbb
             return word[:-1] + 'b'
@@ -47,8 +59,7 @@ def generate():
 """
 
 
-def run(color, word):     # word - само слово, amount_of_steps - кол-во шагов
-    print(color, word)
+def run(color, word):     # word - само слово, color - какой цвет линии будет использоватся
     amount_of_steps = 0
     # print('Входящее слово - ' + word)
     current_mt = mt_for_find_amount_litter_in_one_word()
@@ -86,4 +97,4 @@ def run(color, word):     # word - само слово, amount_of_steps - кол
 
 
 if __name__ == '__main__':
-    run('abccbaabccbaabccba')        # сделать проверку на ввод
+    pass
