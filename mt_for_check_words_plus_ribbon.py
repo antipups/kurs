@@ -34,13 +34,13 @@ class mt_for_check_words_plus_ribbon(mt):
         self.direction = '>'
         if self.letter == 'a':
             self.letter = 'L'
-            self.number_of_state = self.second_condition
+            self.state = self.second_condition
         elif self.letter == 'b':
             self.letter = 'L'
-            self.number_of_state = self.third_condition
+            self.state = self.third_condition
         elif self.letter == 'c':
             self.letter = 'L'
-            self.number_of_state = self.fourth_condition
+            self.state = self.fourth_condition
         elif self.letter == 'L':
             self.letter = '1'
             self.second_ribbon = '1'
@@ -54,7 +54,7 @@ class mt_for_check_words_plus_ribbon(mt):
         self.direction = '>'
         if self.letter == 'L':
             self.direction = '<'
-            self.number_of_state = self.fifth_condition
+            self.state = self.fifth_condition
 
     def third_condition(self):
         """
@@ -64,7 +64,7 @@ class mt_for_check_words_plus_ribbon(mt):
         self.direction = '>'
         if self.letter == 'L':
             self.direction = '<'
-            self.number_of_state = self.sixth_condition
+            self.state = self.sixth_condition
 
     def fourth_condition(self):
         """
@@ -74,46 +74,58 @@ class mt_for_check_words_plus_ribbon(mt):
         self.direction = '>'
         if self.letter == 'L':
             self.direction = '<'
-            self.number_of_state = self.seventh_condition
+            self.state = self.seventh_condition
 
     def fifth_condition(self):
         """
             В этом состоянии сверяем букву, если это A то переходим в состояние восемь,
-            иначе в состояние девять.
+            иначе в состояние девять, если это лябда, ставим 0 и завершаем работу программы.
         """
         self.direction = '<'
         if self.letter == 'a':
             self.letter = 'L'
-            self.number_of_state = self.eighth_condition
+            self.state = self.eighth_condition
         elif self.letter in ('b', 'c'):
             self.letter = 'L'
-            self.number_of_state = self.ninth_condition
+            self.state = self.ninth_condition
+        elif self.letter == 'L':
+            self.letter = '0'
+            self.second_ribbon = '0'
+            self.direction = 'stop'
 
     def sixth_condition(self):
         """
             В этом состоянии сверяем букву, если это В то переходим в состояние восемь,
-            иначе в состояние девять.
+            иначе в состояние девять, если это лябда, ставим 0 и завершаем работу программы.
         """
         self.direction = '<'
         if self.letter == 'b':
             self.letter = 'L'
-            self.number_of_state = self.eighth_condition
+            self.state = self.eighth_condition
         elif self.letter in ('a', 'c'):
             self.letter = 'L'
-            self.number_of_state = self.ninth_condition
+            self.state = self.ninth_condition
+        elif self.letter == 'L':
+            self.letter = '0'
+            self.second_ribbon = '0'
+            self.direction = 'stop'
 
     def seventh_condition(self):
         """
             В этом состоянии сверяем букву, если это С то переходим в состояние восемь,
-            иначе в состояние девять.
+            иначе в состояние девять, если это лябда, ставим 0 и завершаем работу программы.
         """
         self.direction = '<'
         if self.letter == 'c':
             self.letter = 'L'
-            self.number_of_state = self.eighth_condition
+            self.state = self.eighth_condition
         elif self.letter in ('a', 'b'):
             self.letter = 'L'
-            self.number_of_state = self.ninth_condition
+            self.state = self.ninth_condition
+        elif self.letter == 'L':
+            self.letter = '0'
+            self.second_ribbon = '0'
+            self.direction = 'stop'
 
     def eighth_condition(self):
         """
@@ -122,7 +134,7 @@ class mt_for_check_words_plus_ribbon(mt):
         self.direction = '<'
         if self.letter == 'L':
             self.direction = '>'
-            self.number_of_state = self.first_condition
+            self.state = self.first_condition
 
     def ninth_condition(self):
         """
