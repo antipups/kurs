@@ -36,9 +36,9 @@ class MyApp(App):
                 text_input.text = ''
                 text_input.hint_text_color = [1, 0, 0, 1]
                 text_input.hint_text = 'Введите НОРМАЛЬНОЕ слово.'
-                # text_input.
                 return
-            text_input.hint_text, text_input.hint_text_color = functional.run('-*k', text_input.text)
+            open('logging.txt', 'w').close()
+            text_input.hint_text, text_input.hint_text_color = functional.run('-*k', text_input.text, False)
             text_input.text = ''
         box_layout = BoxLayout(orientation='vertical')
         text_input = AlfabInput(hint_text="Введите желаемое слово:",
@@ -54,7 +54,7 @@ class MyApp(App):
 
 
 if __name__ == '__main__':
-    # open('sample.txt', 'w').close()     # пересоздаем файл
-    # threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
-    # threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
+    open('sample.txt', 'w').close()     # пересоздаем файл
+    threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
+    threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
     MyApp().run()   # запускаем основное окно с основной задачей

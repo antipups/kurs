@@ -55,13 +55,12 @@ def generate():
 """
 
 
-def run(color, word):     # word - само слово, color - какой цвет линии будет использоватся
-    amount_of_steps = 0
+def run(color, word, bot=True):     # word - само слово, color - какой цвет линии будет использоватся
     # print('Входящее слово - ' + word)
     mt = mt_for_check_words_plus_ribbon()
-    mt.heart('L' + word + 'L', cursor=1)
+    mt.heart('L' + word + 'L', cursor=1, bot=bot)
     with open('sample.txt', 'a') as f:
-        f.write('\n' + str(len(word)) + ',' + str(amount_of_steps) + ',' + color + '\n')
+        f.write('\n' + str(len(word)) + ',' + str(mt.amount_of_steps) + ',' + color + '\n')
     if mt.second_ribbon == '0':
         return 'Слово не подходит', [1, 0, 0, 1]
     else:

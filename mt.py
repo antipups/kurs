@@ -56,7 +56,7 @@ class mt:
     def tenth_condition(self):
         pass
 
-    def heart(self, word, cursor):
+    def heart(self, word, cursor, bot=True):
         """
             Сердце машины, то есть её работа, всё прописано тут, как она идет по состояниям, что возвращаем и т.д.
 
@@ -92,6 +92,14 @@ class mt:
                 word.append('L')
             self.state()      # проводим определенные операции с этой литерой
             word[self.cursor] = self.letter
+            if bot is False:    # если пользователь ввёл слово, записываем логи
+                with open('logging.txt', 'a') as f:
+                    to_file = '\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n'
+                    if self.second_ribbon:
+                        to_file += '\t' + self.second_ribbon
+                    else:
+                        to_file += '\tL'
+                    f.write(to_file)
             if self.direction == '>':
                 self.cursor += 1
             elif self.direction == '<':

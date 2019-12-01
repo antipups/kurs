@@ -1,0 +1,85 @@
+
+
+1	LLbccbaL
+	L
+
+2	LLbccbaL
+	L
+
+3	LLbccbaL
+	L
+
+4	LLbccbaL
+	L
+
+5	LLbccbaL
+	L
+
+6	LLbccbaL
+	L
+
+7	LLbccbaL
+	L
+
+8	LLbccbLL
+	L
+
+9	LLbccbLL
+	L
+
+10	LLbccbLL
+	L
+
+11	LLbccbLL
+	L
+
+12	LLbccbLL
+	L
+
+13	LLbccbLL
+	L
+
+14	LLLccbLL
+	L
+
+15	LLLccbLL
+	L
+
+16	LLLccbLL
+	L
+
+17	LLLccbLL
+	L
+
+18	LLLccbLL
+	L
+
+19	LLLccLLL
+	L
+
+20	LLLccLLL
+	L
+
+21	LLLccLLL
+	L
+
+22	LLLccLLL
+	L
+
+23	LLLLcLLL
+	L
+
+24	LLLLcLLL
+	L
+
+25	LLLLcLLL
+	L
+
+26	LLLLLLLL
+	L
+
+27	LLLLLLLL
+	L
+
+28	LLLL1LLL
+	1
