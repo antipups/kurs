@@ -26,7 +26,7 @@ def draw():
                     x, y = eachLine.split(',')
                     xar.append(int(x))  # засовываем в список иксов
                     yar.append(int(y))  # засовываем в список игриков
-            ax1.plot(xar, yar, color)
+            ax1.plot(xar, yar, color, markersize=18)
 
     ani = animation.FuncAnimation(fig, animate, interval=1000)  # строим, график. Интервал 5 секунд
     plt.show()

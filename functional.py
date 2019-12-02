@@ -41,9 +41,12 @@ def generate():
                     word = ''.join(word)
                     return 'a' + word
     word = 'a'  # начальное слово
+    ls_of_len_word = [len(word)]
     while True:
         word = plus(word)   # генерируем новое слово на основе старого
-        run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
+        if len(word) != ls_of_len_word[-1]:     # смотрим когда добавлять новые слова, чтоб не легло быстро
+            run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
+            ls_of_len_word.append(len(word))
 
 
 def run(word, bot=True, multitape=True):     # word - само слово, bot - генератор, multitape - многоленточность
