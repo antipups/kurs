@@ -3,7 +3,7 @@ class mt:
     amount_of_steps = 0     # кол-во шагов для достижения целей
     tuple_alfabet = ('a', 'b', 'c')     # кортеж с литерами принадлежащим алфавиту
     state = 1     # номер состояния, 2, 3 и т.д, позже first_condition , second,
-                            # тем самым меняя указатели на функции
+                  # тем самым меняя указатели на функции
     direction = '>'         # направление, в которое двигаемся , может быть >, <, stop
     letter = '1'            # буква, которую мы сейчас рассматриваем
     cursor = 1              # курсор , то что бегает по строке
@@ -11,7 +11,7 @@ class mt:
 
     all_new_letter = ('!', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '*')   # дополнительный алфавит который я добавил
 
-    def first_condition(self):
+    def first_condition(self, multitape):
         """
             Функция состояния, условие - что делаем с символом на котором стоит,
             пример :
@@ -29,34 +29,34 @@ class mt:
         """
         pass
 
-    def second_condition(self):
+    def second_condition(self, multitape):
         pass
 
-    def third_condition(self):
+    def third_condition(self, multitape):
         pass
 
-    def fourth_condition(self):
+    def fourth_condition(self, multitape):
         pass
 
-    def fifth_condition(self):
+    def fifth_condition(self, multitape):
         pass
 
-    def sixth_condition(self):
+    def sixth_condition(self, multitape):
         pass
 
-    def seventh_condition(self):
+    def seventh_condition(self, multitape):
         pass
 
-    def eighth_condition(self):
+    def eighth_condition(self, multitape):
         pass
 
-    def ninth_condition(self):
+    def ninth_condition(self, multitape):
         pass
 
-    def tenth_condition(self):
+    def tenth_condition(self, multitape):
         pass
 
-    def heart(self, word, cursor, bot=True):
+    def heart(self, word, cursor, bot, multitape):
         """
             Сердце машины, то есть её работа, всё прописано тут, как она идет по состояниям, что возвращаем и т.д.
 
@@ -81,35 +81,39 @@ class mt:
                 преобразовываем список в строку и возвращаем новое слово.
         """
         self.state = self.first_condition     # привязываем первое состояние к номеру состояния,
-                                                        # или же на каком состоянии мы стартуем
+                                              # или же на каком состоянии мы стартуем
         self.cursor = cursor    # с какой позиции стартовать, мт не всегда стартует с первой позиции
         word = list(word)   # преобразуем строку в список
         while True:     # бесконечный цикл, это и есть некая головка, которая будет ходить по литерам
             self.amount_of_steps += 1
+
             try:
                 self.letter = word[self.cursor]      # получаем литеру на которой стоит головка
             except IndexError:  # если произошел выход за строку
                 word.append('L')
-            self.state()      # проводим определенные операции с этой литерой
-            word[self.cursor] = self.letter
+
+            self.state(multitape)      # проводим определенные операции с этой литерой
+            word[self.cursor] = self.letter     # меняем символ который заменили в состоянии
+
+            # записываем логи в файлы
             if bot is False:    # если пользователь ввёл слово, записываем логи
-                with open('logging.txt', 'a') as f:
-                    to_file = '\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n'
-                    if self.second_ribbon:
-                        to_file += '\t' + self.second_ribbon
-                    else:
-                        to_file += '\tL'
-                    f.write(to_file)
+                if multitape is True:   # для многоленточной
+                    with open('multitape_log.txt', 'a') as f:
+                        to_file = '\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n'
+                        if self.second_ribbon:
+                            to_file += '\t' + self.second_ribbon
+                        else:
+                            to_file += '\tL'
+                        f.write(to_file)
+                else:   # для одноленточной
+                    with open('log.txt', 'a') as f:
+                        f.write('\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n')
+
+            # двигаемся в какую-либо сторону
             if self.direction == '>':
                 self.cursor += 1
             elif self.direction == '<':
                 self.cursor -= 1
             else:   # если self.direction == 'stop', останавливаем машину
-                while True:     # чистим строку от лямбд
-                    try:
-                        word.pop(word.index('L'))   # удаляем L пока видим её
-                    except ValueError:
-                        break
-                self.result_word = ''.join(word)   # выходим из машины, соединяем полученное на выходе слово в строку
-                                                   # и возвращаем его
+                self.result_word = ''.join(word).replace('L', '')   # выходим из машины, соединяем полученное на выходе слово в строку и чистим от L
                 return

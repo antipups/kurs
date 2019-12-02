@@ -8,22 +8,27 @@ def draw():
     ax1 = fig.add_subplot(1, 1, 1)
 
     def animate(i):
-        with open('sample.txt', 'r') as f:
-            pullData = f.read()             # берем значения из файла, в который они записываются из другой функции
-        dataArray = pullData.split('\n')    # далее достаем данные
-        xar = []
-        yar = []
-        color = str()
-        for eachLine in dataArray:
-            if len(eachLine) > 2:
-                x, y, color = eachLine.split(',')
-                xar.append(int(x))  # засовываем в список иксов
-                yar.append(int(y))  # засовываем в список игриков
+        ax1.clear()
+        for name_of_file in ( 'multi_time.txt', 'time.txt', 'user.txt'):
+            with open(name_of_file, 'r') as f:
+                pullData = f.read()
+            dataArray = pullData.split('\n')    # далее достаем данные
+            xar = list()
+            yar = list()
+            if name_of_file == 'user.txt':  # одноленточная черная
+                color = '-ob'
+            elif name_of_file == 'multi_time.txt':  # многоленточная бот, красная
+                color = '-or'
+            else:   # многоленточная синяя
+                color = '-ok'
+            for eachLine in dataArray:
+                if len(eachLine) > 2:
+                    x, y = eachLine.split(',')
+                    xar.append(int(x))  # засовываем в список иксов
+                    yar.append(int(y))  # засовываем в список игриков
+            ax1.plot(xar, yar, color)
 
-        ax1.clear()  # очищаем, чтобы каждый раз, когда обновляется, картинка рисовалась с нуля, а не поверх старой
-        ax1.plot(xar, yar, color)
-
-    ani = animation.FuncAnimation(fig, animate, interval=3000)  # строим, график. Интервал 5 секунд
+    ani = animation.FuncAnimation(fig, animate, interval=1000)  # строим, график. Интервал 5 секунд
     plt.show()
 
 

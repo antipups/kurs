@@ -1,0 +1,136 @@
+
+
+1	LLcccccccL
+	L
+
+2	LLcccccccL
+	L
+
+3	LLcccccccL
+	L
+
+4	LLcccccccL
+	L
+
+5	LLcccccccL
+	L
+
+6	LLcccccccL
+	L
+
+7	LLcccccccL
+	L
+
+8	LLcccccccL
+	L
+
+9	LLcccccccL
+	L
+
+10	LLccccccLL
+	L
+
+11	LLccccccLL
+	L
+
+12	LLccccccLL
+	L
+
+13	LLccccccLL
+	L
+
+14	LLccccccLL
+	L
+
+15	LLccccccLL
+	L
+
+16	LLccccccLL
+	L
+
+17	LLccccccLL
+	L
+
+18	LLLcccccLL
+	L
+
+19	LLLcccccLL
+	L
+
+20	LLLcccccLL
+	L
+
+21	LLLcccccLL
+	L
+
+22	LLLcccccLL
+	L
+
+23	LLLcccccLL
+	L
+
+24	LLLcccccLL
+	L
+
+25	LLLccccLLL
+	L
+
+26	LLLccccLLL
+	L
+
+27	LLLccccLLL
+	L
+
+28	LLLccccLLL
+	L
+
+29	LLLccccLLL
+	L
+
+30	LLLccccLLL
+	L
+
+31	LLLLcccLLL
+	L
+
+32	LLLLcccLLL
+	L
+
+33	LLLLcccLLL
+	L
+
+34	LLLLcccLLL
+	L
+
+35	LLLLcccLLL
+	L
+
+36	LLLLccLLLL
+	L
+
+37	LLLLccLLLL
+	L
+
+38	LLLLccLLLL
+	L
+
+39	LLLLccLLLL
+	L
+
+40	LLLLLcLLLL
+	L
+
+41	LLLLLcLLLL
+	L
+
+42	LLLLLcLLLL
+	L
+
+43	LLLLLLLLLL
+	L
+
+44	LLLLLLLLLL
+	L
+
+45	LLLLL1LLLL
+	1

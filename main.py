@@ -11,14 +11,13 @@ Config.set('graphics', 'left', '28')
 Config.set('graphics', 'top', '50')
 Config.set('graphics', 'position', 'custom')
 Config.set('kivy', 'exit_on_escape', '1')
-Config.set('graphics', 'height', '70')
+Config.set('graphics', 'height', '100')
 Config.set('graphics', 'width', '300')
 Config.set('graphics', 'resizable', '0')
 
 
 class AlfabInput(TextInput):    # переписанный текст инпут, для того чтоб вводили только a b или c
-
-    pat = re.compile('[^a-c]')
+    pat = re.compile('[^a-c]')  # патерн, сюда вводим значения которые нам нужны
 
     def insert_text(self, substring, from_undo=False):
         pat = self.pat
@@ -31,30 +30,40 @@ class AlfabInput(TextInput):    # переписанный текст инпут
 
 class MyApp(App):
     def build(self):
-        def create_window(instance):
-            if not text_input.text or text_input.text.find('.') > -1:
+        def run_the_task(instance):
+            if not text_input.text or text_input.text.find('.') > -1:   # если введено что-то не то
                 text_input.text = ''
                 text_input.hint_text_color = [1, 0, 0, 1]
                 text_input.hint_text = 'Введите НОРМАЛЬНОЕ слово.'
-                return
-            open('logging.txt', 'w').close()
-            text_input.hint_text, text_input.hint_text_color = functional.run('-*k', text_input.text, False)
-            text_input.text = ''
+            else:
+                for name_of_file in ('log.txt', 'multitape_log.txt'):   # чистим файлы после прошлого запуска
+                    open(name_of_file, 'w').close()
+                text_input.hint_text, text_input.hint_text_color = \
+                    functional.run(text_input.text, False, True if int(instance.id) == 1 else False)
+                text_input.text = ''
+
         box_layout = BoxLayout(orientation='vertical')
         text_input = AlfabInput(hint_text="Введите желаемое слово:",
                                 multiline=False,
-                                on_text_validate=create_window,
+                                on_text_validate=run_the_task,
+                                id='0'
                                 )
         text_input.focus = True
-        button = Button(text='Проверить',
-                        on_release=create_window)
+        button = Button(text='Одноленточная',
+                        on_release=run_the_task,
+                        id='0')
+        button_multi = Button(text='Многоленточная',
+                              on_release=run_the_task,
+                              id='1')
         box_layout.add_widget(text_input)
         box_layout.add_widget(button)
+        box_layout.add_widget(button_multi)
         return box_layout
 
 
 if __name__ == '__main__':
-    open('sample.txt', 'w').close()     # пересоздаем файл
+    for name_of_file in ('time.txt', 'multi_time.txt', 'user.txt'):     # чистим файлы с графиками
+        open(name_of_file, 'w').close()
     threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
     threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
     MyApp().run()   # запускаем основное окно с основной задачей
