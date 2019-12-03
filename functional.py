@@ -41,12 +41,9 @@ def generate():
                     word = ''.join(word)
                     return 'a' + word
     word = 'a'  # начальное слово
-    ls_of_len_word = [len(word)]
     while True:
-        word = plus(word)   # генерируем новое слово на основе старого
-        if len(word) != ls_of_len_word[-1]:     # смотрим когда добавлять новые слова, чтоб не легло быстро
-            run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
-            ls_of_len_word.append(len(word))
+        run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
+        word = plus(word)  # генерируем новое слово на основе старого
 
 
 def run(word, bot=True, multitape=True):     # word - само слово, bot - генератор, multitape - многоленточность
@@ -61,14 +58,7 @@ def run(word, bot=True, multitape=True):     # word - само слово, bot -
     """
     mt = mt_for_check_words_plus_ribbon()
     mt.heart('L' + word + 'L', cursor=1, bot=bot, multitape=multitape)
-    if bot is False:                            # если не бот, на графике помечаем синим цветом
-        if multitape is True:
-            name_of_file = 'user.txt'   # если пользователь запустил на многоленточной
-        else:
-            name_of_file = 'time.txt'   # если пользователь запустил на одноленточной
-    else:                     # если бот на мульти ленточной
-        name_of_file = 'multi_time.txt'
-    with open(name_of_file, 'a') as f:
+    with open('multi_time.txt', 'a') as f:
         f.write('\n' + str(len(word)) + ',' + str(mt.amount_of_steps) + '\n')
     if mt.result_word == '0':
         return 'Слово не подходит', [1, 0, 0, 1]

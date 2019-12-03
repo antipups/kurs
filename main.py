@@ -1,5 +1,7 @@
 import re
 import threading
+import time
+
 import animation1
 import functional
 from kivy.config import Config
@@ -46,8 +48,7 @@ class MyApp(App):
         text_input = AlfabInput(hint_text="Введите желаемое слово:",
                                 multiline=False,
                                 on_text_validate=run_the_task,
-                                id='0'
-                                )
+                                id='0')
         text_input.focus = True
         button = Button(text='Одноленточная',
                         on_release=run_the_task,
