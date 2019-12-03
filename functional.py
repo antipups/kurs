@@ -1,4 +1,4 @@
-from mt_for_check_words_plus_ribbon import mt_for_check_words_plus_ribbon
+from for_one_tape import mt_for_check_words_plus_ribbon
 
 
 def generate():
