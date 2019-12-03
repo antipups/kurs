@@ -11,7 +11,7 @@ class mt:
 
     all_new_letter = ('!', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '*')   # дополнительный алфавит который я добавил
 
-    def first_condition(self, multitape):
+    def first_condition(self):
         """
             Функция состояния, условие - что делаем с символом на котором стоит,
             пример :
@@ -29,34 +29,34 @@ class mt:
         """
         pass
 
-    def second_condition(self, multitape):
+    def second_condition(self):
         pass
 
-    def third_condition(self, multitape):
+    def third_condition(self):
         pass
 
-    def fourth_condition(self, multitape):
+    def fourth_condition(self):
         pass
 
-    def fifth_condition(self, multitape):
+    def fifth_condition(self):
         pass
 
-    def sixth_condition(self, multitape):
+    def sixth_condition(self):
         pass
 
-    def seventh_condition(self, multitape):
+    def seventh_condition(self):
         pass
 
-    def eighth_condition(self, multitape):
+    def eighth_condition(self):
         pass
 
-    def ninth_condition(self, multitape):
+    def ninth_condition(self):
         pass
 
-    def tenth_condition(self, multitape):
+    def tenth_condition(self):
         pass
 
-    def heart(self, word, cursor, bot, multitape):
+    def heart(self, word, cursor, bot):
         """
             Сердце машины, то есть её работа, всё прописано тут, как она идет по состояниям, что возвращаем и т.д.
 

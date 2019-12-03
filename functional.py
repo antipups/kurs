@@ -1,4 +1,5 @@
-from for_one_tape import mt_for_check_words_plus_ribbon
+from for_one_tape import mt_for_one_tape
+from for_multi_tape import mt_for_multi_tape
 
 
 def generate():
@@ -56,7 +57,10 @@ def run(word, bot=True, multitape=True):     # word - само слово, bot -
         графиков, всего их 3, многоленточный, одноленточный, и пользовательский, и рисует
         соответственно график зависимости.
     """
-    mt = mt_for_check_words_plus_ribbon()
+    if multitape is True:
+        mt = mt_for_multi_tape()
+    else:
+        mt = mt_for_one_tape()
     mt.heart('L' + word + 'L', cursor=1, bot=bot, multitape=multitape)
     with open('multi_time.txt', 'a') as f:
         f.write('\n' + str(len(word)) + ',' + str(mt.amount_of_steps) + '\n')
