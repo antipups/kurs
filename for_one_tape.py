@@ -8,7 +8,7 @@ class mt_for_one_tape:
 
     direction = '>'         # направление, в которое двигаемся , может быть >, <, stop
     letter = str()            # буква, которую мы сейчас рассматриваем
-    cursor = int()              # курсор , то что бегает по строке
+    cursor = 1              # курсор , то что бегает по строке
 
     """
         Машина тьюринга которая получает результаты второй(выдает первое слово) и третьей(выдает второе слово) мт,
@@ -166,7 +166,7 @@ class mt_for_one_tape:
             self.letter = '0'
             self.direction = 'stop'
 
-    def heart(self, word, cursor, bot):
+    def heart(self, word, bot):
         """
             Сердце машины, то есть её работа, всё прописано тут, как она идет по состояниям, что возвращаем и т.д.
 
@@ -192,7 +192,6 @@ class mt_for_one_tape:
         """
         self.state = self.first_condition     # привязываем первое состояние к номеру состояния,
                                               # или же на каком состоянии мы стартуем
-        self.cursor = cursor    # с какой позиции стартовать, мт не всегда стартует с первой позиции
         word = list(word)   # преобразуем строку в список
         while True:     # бесконечный цикл, это и есть некая головка, которая будет ходить по литерам
             self.amount_of_steps += 1
@@ -202,15 +201,6 @@ class mt_for_one_tape:
 
             # записываем логи в файлы
             if bot is False:    # если пользователь ввёл слово, записываем логи
-                # if multitape is True:   # для многоленточной
-                #     with open('multitape_log.txt', 'a') as f:
-                #         to_file = '\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n'
-                #         if self.second_ribbon:
-                #             to_file += '\t' + self.second_ribbon
-                #         else:
-                #             to_file += '\tL'
-                #         f.write(to_file)
-                # else:   # для одноленточной
                 with open('log.txt', 'a') as f:
                     f.write('\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n')
 

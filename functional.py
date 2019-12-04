@@ -1,5 +1,6 @@
 from for_one_tape import mt_for_one_tape
 from for_multi_tape import mt_for_multi_tape
+import time
 
 
 def generate():
@@ -43,6 +44,8 @@ def generate():
                     return 'a' + word
     word = 'a'  # начальное слово
     while True:
+        time.sleep(.001)
+        run(word + ''.join(reversed(word)), True, False)  # заносим сгенерированное слово в функцию решения задачи
         run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
         word = plus(word)  # генерируем новое слово на основе старого
 
@@ -59,11 +62,14 @@ def run(word, bot=True, multitape=True):     # word - само слово, bot -
     """
     if multitape is True:
         mt = mt_for_multi_tape()
+        namefile = 'multi_time.txt'
     else:
         mt = mt_for_one_tape()
-    mt.heart('L' + word + 'L', cursor=1, bot=bot, multitape=multitape)
-    with open('multi_time.txt', 'a') as f:
-        f.write('\n' + str(len(word)) + ',' + str(mt.amount_of_steps) + '\n')
+        namefile = 'time.txt'
+    mt.heart('_' + word + '_', bot=bot)
+    if bot is True:     # значения сформированные генератором пишем в файл для графика
+        with open(namefile, 'a') as f:
+            f.write('\n' + str(len(word)) + ',' + str(mt.amount_of_steps) + '\n')
     if mt.result_word == '0':
         return 'Слово не подходит', [1, 0, 0, 1]
     else:

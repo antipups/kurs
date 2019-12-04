@@ -13,7 +13,7 @@ Config.set('graphics', 'left', '28')
 Config.set('graphics', 'top', '50')
 Config.set('graphics', 'position', 'custom')
 Config.set('kivy', 'exit_on_escape', '1')
-Config.set('graphics', 'height', '100')
+Config.set('graphics', 'height', '517')
 Config.set('graphics', 'width', '300')
 Config.set('graphics', 'resizable', '0')
 
@@ -38,33 +38,45 @@ class MyApp(App):
                 text_input.hint_text_color = [1, 0, 0, 1]
                 text_input.hint_text = 'Введите НОРМАЛЬНОЕ слово.'
             else:
-                for name_of_file in ('log.txt', 'multitape_log.txt'):   # чистим файлы после прошлого запуска
+                for name_of_file in ('log.txt', 'multi_log.txt'):   # чистим файлы после прошлого запуска
                     open(name_of_file, 'w').close()
                 text_input.hint_text, text_input.hint_text_color = \
                     functional.run(text_input.text, False, True if int(instance.id) == 1 else False)
+                if int(instance.id) != 1:
+                    name_of_file = 'log.txt'
+                else:
+                    name_of_file = 'multi_log.txt'
+                with open(name_of_file, 'r') as f:
+                    log_text_input.text = f.read()
                 text_input.text = ''
 
         box_layout = BoxLayout(orientation='vertical')
         text_input = AlfabInput(hint_text="Введите желаемое слово:",
                                 multiline=False,
                                 on_text_validate=run_the_task,
-                                id='0')
+                                id='0',
+                                size_hint_y=.1)
         text_input.focus = True
         button = Button(text='Одноленточная',
                         on_release=run_the_task,
-                        id='0')
+                        id='0',
+                        size_hint_y=.1)
         button_multi = Button(text='Многоленточная',
                               on_release=run_the_task,
-                              id='1')
+                              id='1',
+                              size_hint_y=.1)
+        log_text_input = TextInput(hint_text='Тут будут логи машин.',
+                                   readonly=True)
         box_layout.add_widget(text_input)
         box_layout.add_widget(button)
         box_layout.add_widget(button_multi)
+        box_layout.add_widget(log_text_input)
         return box_layout
 
 
 if __name__ == '__main__':
-    # for name_of_file in ('time.txt', 'multi_time.txt', 'user.txt'):     # чистим файлы с графиками
-    #     open(name_of_file, 'w').close()
-    # threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
-    # threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
+    for name_of_file in ('time.txt', 'multi_time.txt'):     # чистим файлы с графиками
+        open(name_of_file, 'w').close()
+    threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
+    threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
     MyApp().run()   # запускаем основное окно с основной задачей

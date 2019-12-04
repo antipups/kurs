@@ -10,7 +10,6 @@ class mt_for_multi_tape():
     direction_of_second_ribbon = '>'    # направление, в которое двигаемся на второй ленте
     letter_on_first_ribbon, letter_on_second_ribbon = str(), str()  # буква, которую мы сейчас рассматриваем
     cursor_on_first_ribbon, cursor_on_second_ribbon = 1, 0  # курсор , то что бегает по строке
-    word_on_second_ribbon = ['_']
 
     """
         Машина тьюринга которая получает результаты второй(выдает первое слово) и третьей(выдает второе слово) мт,
@@ -44,7 +43,6 @@ class mt_for_multi_tape():
         """
         if self.letter_on_first_ribbon in self.tuple_alfabet:
             self.letter_on_second_ribbon = '1'
-            self.word_on_second_ribbon.append('_')      # так как поставили новый символ, закрыли его лямбдой
             self.direction_of_first_ribbon, self.direction_of_second_ribbon = '>', '>'
             self.state = self.first_condition
         elif self.letter_on_first_ribbon == '_':
@@ -124,16 +122,23 @@ class mt_for_multi_tape():
         self.state = self.first_condition   # привязываем первое состояние к номеру состояния,
                                             # или же на каком состоянии мы стартуем
         word_on_first_ribbon = list(word_on_first_ribbon)
+        word_on_second_ribbon = ['_']
         while True:
             self.amount_of_steps += 1
 
             self.letter_on_first_ribbon = word_on_first_ribbon[self.cursor_on_first_ribbon]
-            self.letter_on_second_ribbon = self.word_on_second_ribbon[self.cursor_on_second_ribbon]
+            self.letter_on_second_ribbon = word_on_second_ribbon[self.cursor_on_second_ribbon]
 
             self.state()
 
             word_on_first_ribbon[self.cursor_on_first_ribbon] = self.letter_on_first_ribbon
-            self.word_on_second_ribbon[self.cursor_on_second_ribbon] = self.letter_on_second_ribbon
+            word_on_second_ribbon[self.cursor_on_second_ribbon] = self.letter_on_second_ribbon
+            if word_on_second_ribbon[self.cursor_on_second_ribbon] == '1':
+                word_on_second_ribbon.append('_')
+
+            if bot is False:
+                with open('multi_log.txt', 'a') as f:
+                    f.write('\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word_on_first_ribbon) + '\n\t' + ''.join(word_on_second_ribbon))
 
             if self.direction_of_second_ribbon == '>':  # двигаемся на второй ленте
                 self.cursor_on_second_ribbon += 1
@@ -151,6 +156,6 @@ class mt_for_multi_tape():
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('_cbaabc_', bot=False)
+    mt.heart('_bbbaaaabbb_', bot=False)
     print(mt.result_word)
     pass
