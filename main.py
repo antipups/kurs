@@ -63,8 +63,8 @@ class MyApp(App):
 
 
 if __name__ == '__main__':
-    for name_of_file in ('time.txt', 'multi_time.txt', 'user.txt'):     # чистим файлы с графиками
-        open(name_of_file, 'w').close()
-    threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
-    threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
+    # for name_of_file in ('time.txt', 'multi_time.txt', 'user.txt'):     # чистим файлы с графиками
+    #     open(name_of_file, 'w').close()
+    # threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
+    # threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
     MyApp().run()   # запускаем основное окно с основной задачей

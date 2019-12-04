@@ -43,3 +43,234 @@
 
 
 15	LLL1LL
+
+
+1	LLbbaL
+
+
+2	LLbbaL
+
+
+3	LLbbaL
+
+
+4	LLbbaL
+
+
+5	LLbbaL
+
+
+6	LLbbLL
+
+
+7	LLbbLL
+
+
+8	LLbbLL
+
+
+9	LLbbLL
+
+
+10	LLLbLL
+
+
+11	LLLbLL
+
+
+12	LLLbLL
+
+
+13	LLLLLL
+
+
+14	LLLLLL
+
+
+15	LLL1LL
+
+
+1	LLbbbL
+
+
+2	LLbbbL
+
+
+3	LLbbbL
+
+
+4	LLbbbL
+
+
+5	LLbbbL
+
+
+6	LLbbLL
+
+
+7	LLbLLL
+
+
+8	LLLLLL
+
+
+9	L0LLLL
+
+
+1	LLbbaL
+
+
+2	LLbbaL
+
+
+3	LLbbaL
+
+
+4	LLbbaL
+
+
+5	LLbbaL
+
+
+6	LLbbLL
+
+
+7	LLbbLL
+
+
+8	LLbbLL
+
+
+9	LLbbLL
+
+
+10	LLLbLL
+
+
+11	LLLbLL
+
+
+12	LLLbLL
+
+
+13	LLLLLL
+
+
+14	LLLLLL
+
+
+15	LLL1LL
+
+
+1	LLbbL
+
+
+2	LLbbL
+
+
+3	LLbbL
+
+
+4	LLbbL
+
+
+5	LLbLL
+
+
+6	LLLLL
+
+
+7	L0LLL
+
+
+1	__bb_
+
+
+2	__bb_
+
+
+3	__bb_
+
+
+4	__bb_
+
+
+5	__b__
+
+
+6	_____
+
+
+7	_0___
+
+
+1	__bbb_
+
+
+2	__bbb_
+
+
+3	__bbb_
+
+
+4	__bbb_
+
+
+5	__bbb_
+
+
+6	__bb__
+
+
+7	__b___
+
+
+8	______
+
+
+9	_0____
+
+
+1	__bba_
+
+
+2	__bba_
+
+
+3	__bba_
+
+
+4	__bba_
+
+
+5	__bba_
+
+
+6	__bb__
+
+
+7	__bb__
+
+
+8	__bb__
+
+
+9	__bb__
+
+
+10	___b__
+
+
+11	___b__
+
+
+12	___b__
+
+
+13	______
+
+
+14	______
+
+
+15	___1__
