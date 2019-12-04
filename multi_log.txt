@@ -1,250 +1,61 @@
 
 
-1	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+1	_abbbcbbba_
 	_
 
-2	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+2	_abbbcbbba_
 	1_
 
-3	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+3	_abbbcbbba_
 	1_
 
-4	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+4	_abbbcbbba_
 	11_
 
-5	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+5	_abbbcbbba_
 	11_
 
-6	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+6	_abbbcbbba_
 	111_
 
-7	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+7	_abbbcbbba_
 	111_
 
-8	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+8	_abbbcbbba_
 	1111_
 
-9	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
+9	_abbbcbbba_
 	1111_
 
-10	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111_
+10	_abbbcbbba_
+	1111_
 
-11	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111_
+11	_abbbcbbb__
+	111__
 
-12	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111_
+12	_abbbcbb___
+	11___
 
-13	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111_
+13	_abbbcb____
+	1____
 
-14	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111_
+14	_abbbc_____
+	_____
 
-15	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111_
+15	_abbb______
+	_____
 
-16	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111_
+16	_abb_______
+	_____
 
-17	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111_
+17	_ab________
+	_____
 
-18	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111_
+18	_a_________
+	_____
 
-19	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111_
+19	___________
+	_____
 
-20	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111_
-
-21	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111_
-
-22	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111_
-
-23	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111_
-
-24	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111111_
-
-25	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111111_
-
-26	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111111_
-
-27	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111111_
-
-28	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111111_
-
-29	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111111_
-
-30	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111111111_
-
-31	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111111111_
-
-32	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111111111_
-
-33	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111111111_
-
-34	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111111111_
-
-35	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111111111_
-
-36	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111111111111_
-
-37	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	111111111111111111_
-
-38	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111111111111_
-
-39	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	1111111111111111111_
-
-40	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111111111111_
-
-41	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_
-	11111111111111111111_
-
-42	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb__
-	1111111111111111111b_
-
-43	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb___
-	111111111111111111bb_
-
-44	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb____
-	11111111111111111bbb_
-
-45	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_____
-	1111111111111111bbbb_
-
-46	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb______
-	111111111111111bbbbb_
-
-47	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_______
-	11111111111111bbbbbb_
-
-48	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb________
-	1111111111111bbbbbbb_
-
-49	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_________
-	111111111111bbbbbbbb_
-
-50	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb__________
-	11111111111bbbbbbbbb_
-
-51	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb___________
-	1111111111bbbbbbbbbb_
-
-52	_bbbbbbbbbbbbbbbbbbbbbbbbbbbbb____________
-	111111111bbbbbbbbbbb_
-
-53	_bbbbbbbbbbbbbbbbbbbbbbbbbbbb_____________
-	11111111bbbbbbbbbbbb_
-
-54	_bbbbbbbbbbbbbbbbbbbbbbbbbbb______________
-	1111111bbbbbbbbbbbbb_
-
-55	_bbbbbbbbbbbbbbbbbbbbbbbbbb_______________
-	111111bbbbbbbbbbbbbb_
-
-56	_bbbbbbbbbbbbbbbbbbbbbbbbb________________
-	11111bbbbbbbbbbbbbbb_
-
-57	_bbbbbbbbbbbbbbbbbbbbbbbb_________________
-	1111bbbbbbbbbbbbbbbb_
-
-58	_bbbbbbbbbbbbbbbbbbbbbbb__________________
-	111bbbbbbbbbbbbbbbbb_
-
-59	_bbbbbbbbbbbbbbbbbbbbbb___________________
-	11bbbbbbbbbbbbbbbbbb_
-
-60	_bbbbbbbbbbbbbbbbbbbbb____________________
-	1bbbbbbbbbbbbbbbbbbb_
-
-61	_bbbbbbbbbbbbbbbbbbbb_____________________
-	bbbbbbbbbbbbbbbbbbbb_
-
-62	_bbbbbbbbbbbbbbbbbbbb_____________________
-	bbbbbbbbbbbbbbbbbbbb_
-
-63	_bbbbbbbbbbbbbbbbbbb______________________
-	_bbbbbbbbbbbbbbbbbbb_
-
-64	_bbbbbbbbbbbbbbbbbb_______________________
-	__bbbbbbbbbbbbbbbbbb_
-
-65	_bbbbbbbbbbbbbbbbb________________________
-	___bbbbbbbbbbbbbbbbb_
-
-66	_bbbbbbbbbbbbbbbb_________________________
-	____bbbbbbbbbbbbbbbb_
-
-67	_bbbbbbbbbbbbbbb__________________________
-	_____bbbbbbbbbbbbbbb_
-
-68	_bbbbbbbbbbbbbb___________________________
-	______bbbbbbbbbbbbbb_
-
-69	_bbbbbbbbbbbbb____________________________
-	_______bbbbbbbbbbbbb_
-
-70	_bbbbbbbbbbbb_____________________________
-	________bbbbbbbbbbbb_
-
-71	_bbbbbbbbbbb______________________________
-	_________bbbbbbbbbbb_
-
-72	_bbbbbbbbbb_______________________________
-	__________bbbbbbbbbb_
-
-73	_bbbbbbbbb________________________________
-	___________bbbbbbbbb_
-
-74	_bbbbbbbb_________________________________
-	____________bbbbbbbb_
-
-75	_bbbbbbb__________________________________
-	_____________bbbbbbb_
-
-76	_bbbbbb___________________________________
-	______________bbbbbb_
-
-77	_bbbbb____________________________________
-	_______________bbbbb_
-
-78	_bbbb_____________________________________
-	________________bbbb_
-
-79	_bbb______________________________________
-	_________________bbb_
-
-80	_bb_______________________________________
-	__________________bb_
-
-81	_b________________________________________
-	___________________b_
-
-82	__________________________________________
-	_____________________
-
-83	1_________________________________________
-	_____________________
+20	0__________
+	_____
