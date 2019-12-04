@@ -17,7 +17,12 @@ class mt_for_multi_tape():
         сравнивает эти слова, если они реверсивным выводит 1, если нет выводит 0.
 
         Как работает:
-            
+            Идет по первой ленте вправо, после каждых двух символов записывая единицу на вторую ленту.
+        После, если кол-во нечетное, всё затирает, если чётное, то переводит все единицы снизу на буквы
+        второй половины слова, то есть затирая одну букву на первой ленте, ставим её на вторую.
+        После это манипуляции на первой ленте останется обычное слово, на второй реверсированное,
+        сравниваем побуквенно попутно затирая, если всё прошло удачно ставим 1 выходим, иначе всё затираем
+        ставим 0 и выходим.
     """
 
     def first_condition(self):
@@ -26,17 +31,20 @@ class mt_for_multi_tape():
             Если находим пустоту то переходим в состаяние 4.
         """
         if self.letter_on_first_ribbon in self.tuple_alfabet:
+            self.direction_of_first_ribbon, self.direction_of_second_ribbon = '>', '.'
             self.state = self.second_condition
-            self.direction_of_first_ribbon = '>'
-            self.direction_of_second_ribbon = 'stop'
         elif self.letter_on_first_ribbon == '_':
+            self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '<'
             self.state = self.fourth_condition
-            self.direction_of_first_ribbon = '<'
-            self.direction_of_second_ribbon = '<'
 
     def second_condition(self):
+        """
+            Если не лямбда то добавляем на вторую ленту 1, и идем в первое состояние;
+            Если лямбда то переходим в состояние 3.
+        """
         if self.letter_on_first_ribbon in self.tuple_alfabet:
             self.letter_on_second_ribbon = '1'
+            self.word_on_second_ribbon.append('_')      # так как поставили новый символ, закрыли его лямбдой
             self.direction_of_first_ribbon, self.direction_of_second_ribbon = '>', '>'
             self.state = self.first_condition
         elif self.letter_on_first_ribbon == '_':
@@ -45,17 +53,30 @@ class mt_for_multi_tape():
             self.state = self.third_condition
 
     def third_condition(self):
-        if self.letter_on_first_ribbon != '_':
+        """
+            Стираем всё на первой и на второй ленте и выводим 0.
+        """
+        if self.letter_on_first_ribbon != '_':  # если ещё не пуста, делаем её пустой
             self.letter_on_first_ribbon = '_'
-        elif self.letter_on_first_ribbon == '_':
+        elif self.letter_on_first_ribbon == '_':    # если уже пуста, перестаем её чистить стопаем прогу и выводим 0
             self.letter_on_first_ribbon = '0'
             self.direction_of_first_ribbon = 'stop'
-        self.letter_on_second_ribbon = '_'
+
+        if self.letter_on_second_ribbon != '_':     # если ещё не пуста, делаем её пустой
+            self.letter_on_second_ribbon = '_'
+        elif self.letter_on_second_ribbon == '_':   # если уже пуста, перестаем её чистить
+            self.direction_of_second_ribbon = '.'
 
     def fourth_condition(self):
+        """
+            Двигаемся влево на обеих лентах, пока видим единицы на второй ленте
+            записываем буквы с первой ленты на вторую, попутно на первой ленте затирая
+            записанную только что букву. Когда закончились все единицы на второй ленте
+            переходим в состояние 5.
+        """
         self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '<'
         if self.letter_on_second_ribbon == '_':
-            self.direction_of_first_ribbon, self.direction_of_second_ribbon = '.', '>'
+            self.direction_of_first_ribbon, self.direction_of_second_ribbon = '.', '>'  # точка - стоим на месте
             self.state = self.fifth_condition
             return
         elif self.letter_on_first_ribbon == 'a':
@@ -67,17 +88,24 @@ class mt_for_multi_tape():
         self.letter_on_first_ribbon = '_'
 
     def fifth_condition(self):
+        """
+            Идем на первой ленте влево, на второй вправо, попутно сравнивая символы, если
+            они равны, двигаем так до лямбд и ставим 1, если нет, то переходим в состояние 6.
+        """
+        self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '>'
         if self.letter_on_first_ribbon == self.letter_on_second_ribbon == '_':
             self.letter_on_first_ribbon = '1'
             self.direction_of_first_ribbon = 'stop'
         elif self.letter_on_first_ribbon == self.letter_on_second_ribbon:
             self.letter_on_first_ribbon, self.letter_on_second_ribbon = '_', '_'
-            self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '>'
         else:
             self.letter_on_first_ribbon, self.letter_on_second_ribbon = '_', '_'
             self.state = self.sixth_condition
 
     def sixth_condition(self):
+        """
+            Затираем всё на лентах и ставим 0.
+        """
         if self.letter_on_first_ribbon == '_':
             self.letter_on_first_ribbon = '0'
             self.direction_of_first_ribbon = 'stop'
@@ -86,6 +114,13 @@ class mt_for_multi_tape():
         self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '>'
 
     def heart(self, word_on_first_ribbon, bot):
+        """
+            Логика такова, берем символы с первой и второй ленты, а именно с мест на которых стоят курсоры,
+            после идем в состояние, где происходит замена или нет состояния/ самой буквы/ направления,
+            выходим из состояния, и присваиваем новые значения переменным, а именно, старые буквы
+            на старых местах меняем на новые, смотрим на направление и меняем курсор если оно изменилось.
+        """
+
         self.state = self.first_condition   # привязываем первое состояние к номеру состояния,
                                             # или же на каком состоянии мы стартуем
         word_on_first_ribbon = list(word_on_first_ribbon)
@@ -93,11 +128,7 @@ class mt_for_multi_tape():
             self.amount_of_steps += 1
 
             self.letter_on_first_ribbon = word_on_first_ribbon[self.cursor_on_first_ribbon]
-            try:
-                self.letter_on_second_ribbon = self.word_on_second_ribbon[self.cursor_on_second_ribbon]
-            except IndexError:
-                self.letter_on_second_ribbon = '_'
-                self.word_on_second_ribbon.append('_')
+            self.letter_on_second_ribbon = self.word_on_second_ribbon[self.cursor_on_second_ribbon]
 
             self.state()
 
