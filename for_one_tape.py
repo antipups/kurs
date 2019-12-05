@@ -4,7 +4,7 @@ class mt_for_one_tape:
     tuple_alfabet = ('a', 'b', 'c')     # кортеж с литерами принадлежащим алфавиту
 
     state = None            # состояние, first_condition , second,
-                            # тем самым меняя указатели на функции
+    number_state = str()    # тем самым меняя указатели на функции
 
     direction = '>'         # направление, в которое двигаемся , может быть >, <, stop
     letter = str()            # буква, которую мы сейчас рассматриваем
@@ -45,6 +45,7 @@ class mt_for_one_tape:
         pass
 
     def first_condition(self):
+        self.number_state = '1'
         """
             Смотрим какая буква, затираем, и отправляем в нужное состояние:
             a -> 2
@@ -73,6 +74,7 @@ class mt_for_one_tape:
             Двигаем до правого конца, после его достижения переходим в
             ПЯТОЕ состояние.
         """
+        self.number_state = '2'
         self.direction = '>'
         if self.letter == '_':
             self.direction = '<'
@@ -83,6 +85,7 @@ class mt_for_one_tape:
             Двигаем до правого конца, после его достижения переходим в
             ШЕСТОЕ состояние.
         """
+        self.number_state = '3'
         self.direction = '>'
         if self.letter == '_':
             self.direction = '<'
@@ -93,12 +96,14 @@ class mt_for_one_tape:
             Двигаем до правого конца, после его достижения переходим в
             СЕДЬМОЕ состояние.
         """
+        self.number_state = '4'
         self.direction = '>'
         if self.letter == '_':
             self.direction = '<'
             self.state = self.seventh_condition
 
     def fifth_condition(self):
+        self.number_state = '5'
         """
             В этом состоянии сверяем букву, если это A то переходим в состояние восемь,
             иначе в состояние девять, если это лябда, ставим 0 и завершаем работу программы.
@@ -119,6 +124,7 @@ class mt_for_one_tape:
             В этом состоянии сверяем букву, если это В то переходим в состояние восемь,
             иначе в состояние девять, если это лябда, ставим 0 и завершаем работу программы.
         """
+        self.number_state = '6'
         self.direction = '<'
         if self.letter == 'b':
             self.letter = '_'
@@ -135,6 +141,7 @@ class mt_for_one_tape:
             В этом состоянии сверяем букву, если это С то переходим в состояние восемь,
             иначе в состояние девять, если это лябда, ставим 0 и завершаем работу программы.
         """
+        self.number_state = '7'
         self.direction = '<'
         if self.letter == 'c':
             self.letter = '_'
@@ -150,6 +157,7 @@ class mt_for_one_tape:
         """
             Данное состояние возвращает головку к первой букве слова.
         """
+        self.number_state = '8'
         self.direction = '<'
         if self.letter == '_':
             self.direction = '>'
@@ -159,6 +167,7 @@ class mt_for_one_tape:
         """
             Данное состояние затирает все буквы слева, и если в конце выводит 0.
         """
+        self.number_state = '9'
         self.direction = '<'
         if self.letter in self.tuple_alfabet:
             self.letter = '_'
@@ -196,13 +205,15 @@ class mt_for_one_tape:
         while True:     # бесконечный цикл, это и есть некая головка, которая будет ходить по литерам
             self.amount_of_steps += 1
             self.letter = word[self.cursor]      # получаем литеру на которой стоит головка
+            temp_letter = self.letter
             self.state()      # проводим определенные операции с этой литерой
             word[self.cursor] = self.letter     # меняем символ который заменили в состоянии
 
             # записываем логи в файлы
             if bot is False:    # если пользователь ввёл слово, записываем логи
                 with open('log.txt', 'a') as f:
-                    f.write('\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word) + '\n')
+                    temp_first_word = ''.join(word[:self.cursor]) + '(' + temp_letter.upper() + ')' + ''.join(word[1 + self.cursor:])
+                    f.write('\n\n' + str(self.amount_of_steps) + '\tq' + self.number_state + '\t' + temp_first_word + '\n')
 
             # двигаемся в какую-либо сторону
             if self.direction == '>':

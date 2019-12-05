@@ -3,8 +3,8 @@ class mt_for_multi_tape():
     amount_of_steps = 0  # кол-во шагов для достижения целей
     tuple_alfabet = ('a', 'b', 'c')  # кортеж с литерами принадлежащим алфавиту
 
-    state = None  # состояние, first_condition , second,
-    # тем самым меняя указатели на функции
+    state = None            # состояние, first_condition , second,
+    number_state = str()    # тем самым меняя указатели на функции
 
     direction_of_first_ribbon = '>'     # направление, в которое двигаемся на первой ленте, может быть >, <, stop
     direction_of_second_ribbon = '>'    # направление, в которое двигаемся на второй ленте
@@ -29,6 +29,7 @@ class mt_for_multi_tape():
             Если элемент есть в алфавите (а, b, c) то переходим в состояние 2;
             Если находим пустоту то переходим в состаяние 4.
         """
+        self.number_state = '1'
         if self.letter_on_first_ribbon in self.tuple_alfabet:
             self.direction_of_first_ribbon, self.direction_of_second_ribbon = '>', '.'
             self.state = self.second_condition
@@ -41,6 +42,7 @@ class mt_for_multi_tape():
             Если не лямбда то добавляем на вторую ленту 1, и идем в первое состояние;
             Если лямбда то переходим в состояние 3.
         """
+        self.number_state = '2'
         if self.letter_on_first_ribbon in self.tuple_alfabet:
             self.letter_on_second_ribbon = '1'
             self.direction_of_first_ribbon, self.direction_of_second_ribbon = '>', '>'
@@ -54,6 +56,7 @@ class mt_for_multi_tape():
         """
             Стираем всё на первой и на второй ленте и выводим 0.
         """
+        self.number_state = '3'
         if self.letter_on_first_ribbon != '_':  # если ещё не пуста, делаем её пустой
             self.letter_on_first_ribbon = '_'
         elif self.letter_on_first_ribbon == '_':    # если уже пуста, перестаем её чистить стопаем прогу и выводим 0
@@ -72,6 +75,7 @@ class mt_for_multi_tape():
             записанную только что букву. Когда закончились все единицы на второй ленте
             переходим в состояние 5.
         """
+        self.number_state = '4'
         self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '<'
         if self.letter_on_second_ribbon == '_':
             self.direction_of_first_ribbon, self.direction_of_second_ribbon = '.', '>'  # точка - стоим на месте
@@ -90,6 +94,7 @@ class mt_for_multi_tape():
             Идем на первой ленте влево, на второй вправо, попутно сравнивая символы, если
             они равны, двигаем так до лямбд и ставим 1, если нет, то переходим в состояние 6.
         """
+        self.number_state = '5'
         self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '>'
         if self.letter_on_first_ribbon == self.letter_on_second_ribbon == '_':
             self.letter_on_first_ribbon = '1'
@@ -104,6 +109,7 @@ class mt_for_multi_tape():
         """
             Затираем всё на лентах и ставим 0.
         """
+        self.number_state = '6'
         if self.letter_on_first_ribbon == '_':
             self.letter_on_first_ribbon = '0'
             self.direction_of_first_ribbon = 'stop'
@@ -128,6 +134,8 @@ class mt_for_multi_tape():
 
             self.letter_on_first_ribbon = word_on_first_ribbon[self.cursor_on_first_ribbon]
             self.letter_on_second_ribbon = word_on_second_ribbon[self.cursor_on_second_ribbon]
+            temp_letter = self.letter_on_first_ribbon
+            temp_second_letter = self.letter_on_second_ribbon
 
             self.state()
 
@@ -138,13 +146,15 @@ class mt_for_multi_tape():
 
             if bot is False:
                 with open('multi_log.txt', 'a') as f:
-                    f.write('\n\n' + str(self.amount_of_steps) + '\t' + ''.join(word_on_first_ribbon) + '\n\t' + ''.join(word_on_second_ribbon))
+                    temp_first_word = ''.join(word_on_first_ribbon[:self.cursor_on_first_ribbon]) + '(' + temp_letter.upper() + ')' + ''.join(word_on_first_ribbon[1 + self.cursor_on_first_ribbon:])
+                    if self.cursor_on_second_ribbon != -1:
+                        temp_second_word = ''.join(word_on_second_ribbon[:self.cursor_on_second_ribbon]) + '(' + temp_second_letter.upper() + ')' + ''.join(word_on_second_ribbon[1 + self.cursor_on_second_ribbon:])
+                    f.write('\n\n' + str(self.amount_of_steps) + '\tq' + self.number_state + '\t' + temp_first_word + '\n\t' + temp_second_word)
 
             if self.direction_of_second_ribbon == '>':  # двигаемся на второй ленте
                 self.cursor_on_second_ribbon += 1
             elif self.direction_of_second_ribbon == '<':
                 self.cursor_on_second_ribbon -= 1
-
             if self.direction_of_first_ribbon == '>':   # двигаемся на первой
                 self.cursor_on_first_ribbon += 1
             elif self.direction_of_first_ribbon == '<':

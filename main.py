@@ -66,7 +66,7 @@ class MyApp(App):
                               id='1',
                               size_hint_y=.1)
         log_text_input = TextInput(hint_text='Тут будут логи машин.',
-                                   readonly=True)
+                                   readonly=False)
         box_layout.add_widget(text_input)
         box_layout.add_widget(button)
         box_layout.add_widget(button_multi)
