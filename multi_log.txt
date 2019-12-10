@@ -1,70 +1,37 @@
 
 
-1	q1	_(B)babbbbabb_
+1	q1	_(A)bbcb_
 	(_)
 
-2	q2	_b(B)abbbbabb_
+2	q2	_a(B)bcb_
 	(_)_
 
-3	q1	_bb(A)bbbbabb_
+3	q1	_ab(B)cb_
 	1(_)
 
-4	q2	_bba(B)bbbabb_
+4	q2	_abb(C)b_
 	1(_)_
 
-5	q1	_bbab(B)bbabb_
+5	q1	_abbc(B)_
 	11(_)
 
-6	q2	_bbabb(B)babb_
-	11(_)_
+6	q2	_abbcb(_)
+	11(_)
 
-7	q1	_bbabbb(B)abb_
-	111(_)
+7	q3	_abbc(B)_
+	1(1)_
 
-8	q2	_bbabbbb(A)bb_
-	111(_)_
+8	q3	_abb(C)__
+	(1)__
 
-9	q1	_bbabbbba(B)b_
-	1111(_)
+9	q3	_ab(B)___
+	(1)__
 
-10	q2	_bbabbbbab(B)_
-	1111(_)_
+10	q3	_a(B)____
+	(1)__
 
-11	q1	_bbabbbbabb(_)
-	11111(_)
+11	q3	_(A)_____
+	(1)__
 
-12	q4	_bbabbbbab(B)_
-	1111(1)_
-
-13	q4	_bbabbbba(B)__
-	111(1)b_
-
-14	q4	_bbabbbb(A)___
-	11(1)bb_
-
-15	q4	_bbabbb(B)____
-	1(1)abb_
-
-16	q4	_bbabb(B)_____
-	(1)babb_
-
-17	q4	_bbab(B)______
-	(1)babb_
-
-18	q5	_bbab(B)______
-	(B)babb_
-
-19	q5	_bba(B)_______
-	_(B)abb_
-
-20	q5	_bb(A)________
-	__(A)bb_
-
-21	q5	_b(B)_________
-	___(B)b_
-
-22	q5	_(B)__________
-	____(B)_
-
-23	q5	(_)___________
-	_____(_)
+12	q3	(_)______
+	(1)__
