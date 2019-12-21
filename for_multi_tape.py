@@ -15,19 +15,6 @@ class mt_for_multi_tape:
     cursor_on_first_ribbon, cursor_on_second_ribbon, cursor_on_third_ribbon, cursor_on_fourth_ribbon =\
         0, 0, 0, 0  # курсор , то что бегает по строке
 
-    """
-        Машина тьюринга которая получает результаты второй(выдает первое слово) и третьей(выдает второе слово) мт,
-        сравнивает эти слова, если они реверсивным выводит 1, если нет выводит 0.
-
-        Как работает:
-            Идет по первой ленте вправо, после каждых двух символов записывая единицу на вторую ленту.
-        После, если кол-во нечетное, всё затирает, если чётное, то переводит все единицы снизу на буквы
-        второй половины слова, то есть затирая одну букву на первой ленте, ставим её на вторую.
-        После это манипуляции на первой ленте останется обычное слово, на второй реверсированное,
-        сравниваем побуквенно попутно затирая, если всё прошло удачно ставим 1 выходим, иначе всё затираем
-        ставим 0 и выходим.
-    """
-
     def first_condition(self):
         """
                 Считаем кол-во всех букв, а именно: нашли букву A, записали 1 на вторую ленту,
@@ -120,6 +107,7 @@ class mt_for_multi_tape:
             self.letter_on_third_ribbon, self.letter_on_fourth_ribbon = '_', '_'
         elif self.letter_on_third_ribbon == '_' and self.letter_on_fourth_ribbon == '_':
             self.direction_of_third_ribbon, self.direction_of_fourth_ribbon = '.', '.'
+            self.direction_of_first_ribbon, self.direction_of_second_ribbon = '<', '>'
             self.state = self.seventh_condition
         elif self.letter_on_third_ribbon == 'A' and self.letter_on_fourth_ribbon == '_':
             self.direction_of_fourth_ribbon, self.direction_of_second_ribbon, self.direction_of_first_ribbon =\
@@ -140,6 +128,7 @@ class mt_for_multi_tape:
             self.letter_on_second_ribbon, self.letter_on_fourth_ribbon = '_', '_'
         elif self.letter_on_second_ribbon == '_' and self.letter_on_fourth_ribbon == '_':
             self.direction_of_second_ribbon, self.direction_of_fourth_ribbon = '.', '.'
+            self.direction_of_first_ribbon, self.direction_of_third_ribbon = '<', '>'
             self.state = self.seventh_condition
         elif self.letter_on_second_ribbon == 'A' and self.letter_on_fourth_ribbon == '_':
             self.direction_of_fourth_ribbon, self.direction_of_third_ribbon, self.direction_of_first_ribbon = \
@@ -179,10 +168,18 @@ class mt_for_multi_tape:
 
     def heart(self, word_on_first_ribbon, bot):
         """
-            Логика такова, берем символы с первой и второй ленты, а именно с мест на которых стоят курсоры,
-            после идем в состояние, где происходит замена или нет состояния/ самой буквы/ направления,
-            выходим из состояния, и присваиваем новые значения переменным, а именно, старые буквы
-            на старых местах меняем на новые, смотрим на направление и меняем курсор если оно изменилось.
+                Вначале считаем кол-во символов a, b, c. После, проводим манипуляции с этим кол-вом,
+            записывали кол-во этих литер на вторую, третью, и четвертую ленту соответственно.
+                За всё это отвечало первое состояние, оно смотрело на символ и в зависимости от того
+            какой он записывало на вторую (если а), третью (если б), четвертую (если с).
+                После, переходим во второе состояние, где делаем проверку j >= 1, если всё сработало
+            переходим в третье состояние, если нет, в четвертое, которое всё затирает и ставит 0.
+                В третьем состоянии мы ищем минимум, путем переделывания символов 1 на A, после дохода
+            на одной из лент до лямбды, переходим в пятое или шестое состояние соответственно (5-ое для
+            минимума на третьей, 6-ое для минимума на второй).
+                В пятом / шестом состоянии сверяем кол-во символов и там и там, попутно затирая их,
+            если символов по кол-ву равно, то переходим в седьмое состояние, всё стираем, и ппишем единицу.
+            Иначе в четвертое.
         """
 
         self.state = self.first_condition   # привязываем первое состояние к номеру состояния,
@@ -212,7 +209,7 @@ class mt_for_multi_tape:
             word_on_second_ribbon[self.cursor_on_second_ribbon] = self.letter_on_second_ribbon
             word_on_third_ribbon[self.cursor_on_third_ribbon] = self.letter_on_third_ribbon
             word_on_fourth_ribbon[self.cursor_on_fourth_ribbon] = self.letter_on_fourth_ribbon
-            print(word_on_first_ribbon, word_on_second_ribbon, word_on_third_ribbon, word_on_fourth_ribbon)
+            # print(word_on_first_ribbon, word_on_second_ribbon, word_on_third_ribbon, word_on_fourth_ribbon)
             if word_on_second_ribbon[self.cursor_on_second_ribbon] == '1':
                 word_on_second_ribbon.append('_')
             if word_on_third_ribbon[self.cursor_on_third_ribbon] == '1':
@@ -220,12 +217,26 @@ class mt_for_multi_tape:
             if word_on_fourth_ribbon[self.cursor_on_fourth_ribbon] == '1':
                 word_on_fourth_ribbon.append('_')
 
-            # if bot is False:
-            #     with open('multi_log.txt', 'a') as f:
-            #         temp_first_word = ''.join(word_on_first_ribbon[:self.cursor_on_first_ribbon]) + '(' + temp_letter.upper() + ')' + ''.join(word_on_first_ribbon[1 + self.cursor_on_first_ribbon:])
-            #         if self.cursor_on_second_ribbon != -1:
-            #             temp_second_word = ''.join(word_on_second_ribbon[:self.cursor_on_second_ribbon]) + '(' + temp_second_letter.upper() + ')' + ''.join(word_on_second_ribbon[1 + self.cursor_on_second_ribbon:])
-            #         f.write('\n\n' + str(self.amount_of_steps) + '\tq' + self.number_state + '\t' + temp_first_word + '\n\t' + temp_second_word)
+            if bot is False:
+                with open('multi_log.txt', 'a') as f:
+                    temp_first_word = ''.join(word_on_first_ribbon[:self.cursor_on_first_ribbon]) + '(' + temp_letter.upper() + ')' + ''.join(word_on_first_ribbon[1 + self.cursor_on_first_ribbon:])
+                    if self.cursor_on_second_ribbon <= 0:
+                        temp_second_word = ''.join(word_on_second_ribbon[:self.cursor_on_second_ribbon]) + '(' + temp_second_letter.upper() + ')'
+                    else:
+                        temp_second_word = ''.join(word_on_second_ribbon[:self.cursor_on_second_ribbon]) + '(' + temp_second_letter.upper() + ')' + ''.join(word_on_second_ribbon[1 + self.cursor_on_second_ribbon:])
+                    if self.cursor_on_third_ribbon <= 0:
+                        temp_third_word = ''.join(word_on_third_ribbon[:self.cursor_on_third_ribbon]) + '(' + temp_third_letter.upper() + ')'
+                    else:
+                        temp_third_word = ''.join(word_on_third_ribbon[:self.cursor_on_third_ribbon]) + '(' + temp_third_letter.upper() + ')' + ''.join(word_on_third_ribbon[1 + self.cursor_on_third_ribbon:])
+                    if self.cursor_on_fourth_ribbon <= 0:
+                        temp_fourth_word = ''.join(word_on_fourth_ribbon[:self.cursor_on_fourth_ribbon]) + '(' + temp_fourth_letter.upper() + ')'
+                    else:
+                        temp_fourth_word = ''.join(word_on_fourth_ribbon[:self.cursor_on_fourth_ribbon]) + '(' + temp_fourth_letter.upper() + ')' + ''.join(word_on_fourth_ribbon[1 + self.cursor_on_fourth_ribbon:])
+                    f.write('\n\nНомер шага:' + str(self.amount_of_steps) + '\nСостояние - q' + self.number_state +
+                            '\n\t1-ая лента: ' + temp_first_word +
+                            '\n\t2-ая лента: ' + temp_second_word +
+                            '\n\t3-ья лента: ' + temp_third_word +
+                            '\n\t4-ая лента: ' + temp_fourth_word)
 
             if self.direction_of_second_ribbon == '>':  # двигаемся на ВТОРОЙ ленте
                 self.cursor_on_second_ribbon += 1
@@ -247,13 +258,13 @@ class mt_for_multi_tape:
             elif self.direction_of_first_ribbon == '<':
                 self.cursor_on_first_ribbon -= 1
             elif self.direction_of_first_ribbon == 'stop':
-                print(word_on_first_ribbon)
+                # print(word_on_first_ribbon)
                 self.result_word = ''.join(word_on_first_ribbon).replace('_', '')
                 return
 
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('abbaaacbcc_', bot=False)
-    print(mt.result_word)
+    mt.heart('ccaaabbbc_', bot=False)
+    # print(mt.result_word)
     pass
