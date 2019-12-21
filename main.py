@@ -33,22 +33,22 @@ class AlfabInput(TextInput):    # переписанный текст инпут
 class MyApp(App):
     def build(self):
         def run_the_task(instance):
-            if not text_input.text or text_input.text.find('.') > -1:   # если введено что-то не то
-                text_input.text = ''
-                text_input.hint_text_color = [1, 0, 0, 1]
-                text_input.hint_text = 'Введите НОРМАЛЬНОЕ слово.'
+            # if not text_input.text or text_input.text.find('.') > -1:   # если введено что-то не то
+            #     text_input.text = ''
+            #     text_input.hint_text_color = [1, 0, 0, 1]
+            #     text_input.hint_text = 'Введите НОРМАЛЬНОЕ слово.'
+            # else:
+            for name_of_file in ('log.txt', 'multi_log.txt'):   # чистим файлы после прошлого запуска
+                open(name_of_file, 'w').close()
+            text_input.hint_text, text_input.hint_text_color = \
+                functional.run(text_input.text, False, True if int(instance.id) == 1 else False)
+            if int(instance.id) != 1:
+                name_of_file = 'log.txt'
             else:
-                for name_of_file in ('log.txt', 'multi_log.txt'):   # чистим файлы после прошлого запуска
-                    open(name_of_file, 'w').close()
-                text_input.hint_text, text_input.hint_text_color = \
-                    functional.run(text_input.text, False, True if int(instance.id) == 1 else False)
-                if int(instance.id) != 1:
-                    name_of_file = 'log.txt'
-                else:
-                    name_of_file = 'multi_log.txt'
-                with open(name_of_file, 'r') as f:
-                    log_text_input.text = f.read()
-                text_input.text = ''
+                name_of_file = 'multi_log.txt'
+            with open(name_of_file, 'r') as f:
+                log_text_input.text = f.read()
+            text_input.text = ''
 
         box_layout = BoxLayout(orientation='vertical')
         text_input = AlfabInput(hint_text="Введите желаемое слово:",

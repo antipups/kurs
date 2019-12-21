@@ -1,37 +1,82 @@
 
 
-1	q1	_(A)bbcb_
+1	q1	_(A)bababababab_
 	(_)
 
-2	q2	_a(B)bcb_
+2	q2	_a(B)ababababab_
 	(_)_
 
-3	q1	_ab(B)cb_
+3	q1	_ab(A)babababab_
 	1(_)
 
-4	q2	_abb(C)b_
+4	q2	_aba(B)abababab_
 	1(_)_
 
-5	q1	_abbc(B)_
+5	q1	_abab(A)bababab_
 	11(_)
 
-6	q2	_abbcb(_)
-	11(_)
+6	q2	_ababa(B)ababab_
+	11(_)_
 
-7	q3	_abbc(B)_
-	1(1)_
+7	q1	_ababab(A)babab_
+	111(_)
 
-8	q3	_abb(C)__
-	(1)__
+8	q2	_abababa(B)abab_
+	111(_)_
 
-9	q3	_ab(B)___
-	(1)__
+9	q1	_abababab(A)bab_
+	1111(_)
 
-10	q3	_a(B)____
-	(1)__
+10	q2	_ababababa(B)ab_
+	1111(_)_
 
-11	q3	_(A)_____
-	(1)__
+11	q1	_ababababab(A)b_
+	11111(_)
 
-12	q3	(_)______
-	(1)__
+12	q2	_abababababa(B)_
+	11111(_)_
+
+13	q1	_abababababab(_)
+	111111(_)
+
+14	q4	_abababababa(B)_
+	11111(1)_
+
+15	q4	_ababababab(A)__
+	1111(1)b_
+
+16	q4	_ababababa(B)___
+	111(1)ab_
+
+17	q4	_abababab(A)____
+	11(1)bab_
+
+18	q4	_abababa(B)_____
+	1(1)abab_
+
+19	q4	_ababab(A)______
+	(1)babab_
+
+20	q4	_ababa(B)_______
+	(1)babab_
+
+21	q5	_ababa(B)_______
+	(A)babab_
+
+22	q6	_abab(A)________
+	_(B)abab_
+
+23	q6	_aba(B)_________
+	__(A)bab_
+
+24	q6	_ab(A)__________
+	___(B)ab_
+
+25	q6	_a(B)___________
+	____(A)b_
+
+26	q6	_(A)____________
+	_____(B)_
+
+27	q6	(_)_____________
+	______(_)

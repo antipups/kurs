@@ -18,7 +18,9 @@ def generate():
             ccc -> aaaa     # т.к. все буквы c, мы меняем каждую на a и потом добавляем a в начало строки
     """
     def plus(word):     # генератор слов
-        if word[-1] == 'a':                 # cba -> cbb
+        if word == '':
+            return 'a'
+        elif word[-1] == 'a':                 # cba -> cbb
             return word[:-1] + 'b'
         elif word[-1] == 'b':               # cbb -> cbc
             return word[:-1] + 'c'
@@ -42,11 +44,11 @@ def generate():
                 except IndexError:  # если слово полностью обновляется (ccc) добавляем новый элемент в начало (aaaa)
                     word = ''.join(word)
                     return 'a' + word
-    word = 'a'  # начальное слово
+    word = ''  # начальное слово
     while True:
         time.sleep(.001)
         run(word + ''.join(reversed(word)), True, False)  # заносим сгенерированное слово в функцию решения задачи
-        run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
+        # run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
         word = plus(word)  # генерируем новое слово на основе старого
 
 
