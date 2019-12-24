@@ -135,7 +135,7 @@ class mt_for_multi_tape:
                 '.', '>', '<'
             self.state = self.fourth_condition
 
-        elif self.letter_on_third_ribbon == '_' and self.letter_on_fourth_ribbon == '1':
+        elif self.letter_on_second_ribbon == '_' and self.letter_on_fourth_ribbon == '1':
             self.direction_of_second_ribbon, self.direction_of_third_ribbon, self.direction_of_first_ribbon = \
                 '.', '>', '<'
             self.state = self.fourth_condition
@@ -204,12 +204,16 @@ class mt_for_multi_tape:
 
             # print(self.letter_on_third_ribbon)
             self.state()
-
+            # print('====================', self.amount_of_steps, '====================')
+            # print(word_on_first_ribbon)
+            # print(word_on_second_ribbon)
+            # print(word_on_third_ribbon)
+            # print(word_on_fourth_ribbon)
             word_on_first_ribbon[self.cursor_on_first_ribbon] = self.letter_on_first_ribbon
             word_on_second_ribbon[self.cursor_on_second_ribbon] = self.letter_on_second_ribbon
             word_on_third_ribbon[self.cursor_on_third_ribbon] = self.letter_on_third_ribbon
             word_on_fourth_ribbon[self.cursor_on_fourth_ribbon] = self.letter_on_fourth_ribbon
-            # print(word_on_first_ribbon, word_on_second_ribbon, word_on_third_ribbon, word_on_fourth_ribbon)
+            # print(word_on_first_ribbon, '\n', word_on_second_ribbon, '\n',  word_on_third_ribbon, '\n',  word_on_fourth_ribbon)
             if word_on_second_ribbon[self.cursor_on_second_ribbon] == '1':
                 word_on_second_ribbon.append('_')
             if word_on_third_ribbon[self.cursor_on_third_ribbon] == '1':
@@ -265,6 +269,6 @@ class mt_for_multi_tape:
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('ccaaabbbc_', bot=False)
-    # print(mt.result_word)
+    mt.heart('bc_', bot=False)
+    print(mt.result_word)
     pass
