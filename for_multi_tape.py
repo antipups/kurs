@@ -272,3 +272,4 @@ if __name__ == '__main__':
     mt.heart('bc_', bot=False)
     print(mt.result_word)
     pass
+    # тест

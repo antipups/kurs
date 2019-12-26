@@ -75,3 +75,4 @@ if __name__ == '__main__':
     threading.Thread(target=functional.generate, daemon=True).start()   # создаем в отдельном потоке генератор
     threading.Thread(target=animation1.draw, daemon=True).start()       # создаем в отдельном потоке прорисовку временной трудности
     MyApp().run()   # запускаем основное окно с основной задачей
+    # тест

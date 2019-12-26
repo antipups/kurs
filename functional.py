@@ -39,3 +39,4 @@ def run(word, bot=True, multitape=True):     # word - само слово, bot -
 
 if __name__ == '__main__':
     pass
+    # тест
