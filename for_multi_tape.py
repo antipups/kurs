@@ -269,7 +269,7 @@ class mt_for_multi_tape:
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('bc_', bot=False)
+    mt.heart('a_', bot=False)
     print(mt.result_word)
     pass
     # тест

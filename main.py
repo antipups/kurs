@@ -46,7 +46,6 @@ class MyApp(App):
         box_layout = BoxLayout(orientation='vertical')
         text_input = AlfabInput(hint_text="Введите желаемое слово:\n(По языку - abbbacc,\nпротивное - abbccc)",
                                 multiline=False,
-                                on_text_validate=run_the_task,
                                 id='0',
                                 size_hint_y=.2,
                                 )
