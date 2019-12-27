@@ -6,14 +6,16 @@ import time
 def generate():
     """
             Генератор.
-        Генерирует всё время новые значения, по типу было abc стало abcabc, и так до бесконечности.
+        Генерирует всё время новые значения, по типу было abc стало aabbcc, и так до бесконечности.
     """
     word = ''  # начальное слово
+    i = 0
     while True:
         time.sleep(.001)    # задержка чтоб было легче дышать машине.
         # run(word + ''.join(reversed(word)), True, False)  # заносим сгенерированное слово в функцию решения задачи
         run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
-        word += 'abc'
+        word = 'a' * i + 'b' * i + 'c' * i
+        i += 1
 
 
 def run(word, bot=True, multitape=True):     # word - само слово, bot - генератор, multitape - многоленточность
