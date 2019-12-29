@@ -17,7 +17,7 @@ Config.set('graphics', 'resizable', '0')
 
 
 class AlfabInput(TextInput):    # переписанный текст инпут, для того чтоб вводили только a b или c
-    pat = re.compile('[^a-c]')  # патерн, сюда вводим значения которые нам нужны
+    pat = re.compile('[^a-d]')  # патерн, сюда вводим значения которые нам нужны
 
     def insert_text(self, substring, from_undo=False):
         pat = self.pat
@@ -48,6 +48,7 @@ class MyApp(App):
                                 multiline=False,
                                 id='0',
                                 size_hint_y=.2,
+                                # on_text_validate=run_the_task,
                                 )
         text_input.focus = True
         # button = Button(text='',
