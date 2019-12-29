@@ -44,7 +44,7 @@ class MyApp(App):
             text_input.text = ''
 
         box_layout = BoxLayout(orientation='vertical')
-        text_input = AlfabInput(hint_text="Введите желаемое слово:\n(По языку - aabbbcc,\nпротивное - abbccc)",
+        text_input = AlfabInput(hint_text="Введите желаемое слово:\n(По языку - adadcb,\nпротивное - adcb)",
                                 multiline=False,
                                 id='0',
                                 size_hint_y=.2,
