@@ -15,6 +15,7 @@ def generate():
         # run(word + ''.join(reversed(word)), True, False)  # заносим сгенерированное слово в функцию решения задачи
         run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
         word = 'ad' * i * 2 + 'cb' * i
+        print(word)
         i += 1
 
 

@@ -24,9 +24,11 @@ class mt_for_multi_tape:
         self.number_state = '1'
         self.direction_of_second_ribbon, self.direction_of_third_ribbon = '.', '.'  # останавливаем вторую, третью ленты
         if self.letter_on_first_ribbon == 'a':
+            self.letter_on_first_ribbon = '_'
             self.state = self.third_condition
         elif self.letter_on_first_ribbon == 'c':
-            self.state = self.fourth_condition
+            self.direction_of_first_ribbon = '.'
+            self.state = self.ninth_condition
         elif self.letter_on_first_ribbon == '_':
             self.state = self.fifth_condition
             self.direction_of_first_ribbon, self.direction_of_third_ribbon = '.', '<'
@@ -82,7 +84,7 @@ class mt_for_multi_tape:
         """
         self.number_state = '4'
         if self.letter_on_first_ribbon == 'b':
-            self.state = self.first_condition
+            self.state = self.ninth_condition
             self.letter_on_third_ribbon = '1'
             self.direction_of_third_ribbon = '>'
         elif self.letter_on_first_ribbon in ('a', 'c', '_'):
@@ -146,6 +148,20 @@ class mt_for_multi_tape:
         elif self.letter_on_first_ribbon == '_':
             self.letter_on_first_ribbon = '1'
             self.direction_of_first_ribbon = 'stop'
+
+    def ninth_condition(self):
+        self.number_state = '9'
+        self.direction_of_first_ribbon = '>'
+        if self.letter_on_first_ribbon == 'c':
+            self.direction_of_third_ribbon = '.'
+            self.state = self.fourth_condition
+        elif self.letter_on_first_ribbon == '_':
+            self.state = self.fifth_condition
+            self.direction_of_first_ribbon, self.direction_of_third_ribbon = '.', '<'
+        elif self.letter_on_first_ribbon == 'd' or self.letter_on_first_ribbon == 'b' or self.letter_on_first_ribbon == 'a':
+            self.direction_of_first_ribbon, self.direction_of_second_ribbon, self.direction_of_third_ribbon = '<', '<', '<'
+            self.state = self.second_condition
+        self.letter_on_first_ribbon = '_'
 
     def heart(self, word_on_first_ribbon, bot):
         """
@@ -236,7 +252,7 @@ class mt_for_multi_tape:
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('b_', bot=False)
+    mt.heart('adadadadcbcb_', bot=False)
     print(mt.result_word)
     pass
     # тест
