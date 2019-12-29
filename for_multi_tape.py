@@ -230,13 +230,13 @@ class mt_for_multi_tape:
             elif self.direction_of_first_ribbon == '<':
                 self.cursor_on_first_ribbon -= 1
             elif self.direction_of_first_ribbon == 'stop':
-                self.result_word = ''.join(word_on_first_ribbon).replace('_', '').replace('a', '').replace('b', '').replace('c', '')
+                self.result_word = ''.join(word_on_first_ribbon).replace('_', '').replace('a', '').replace('d', '').replace('c', '')
                 return
 
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('adadadadcdcd_', bot=False)
+    mt.heart('adadadadcdсd_', bot=False)
     print(mt.result_word)
     pass
     # тест
