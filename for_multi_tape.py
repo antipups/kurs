@@ -28,7 +28,7 @@ class mt_for_multi_tape:
             self.state = self.third_condition
         elif self.letter_on_first_ribbon == 'c':
             self.direction_of_first_ribbon = '.'
-            self.state = self.ninth_condition
+            self.state = self.eight_condition
         elif self.letter_on_first_ribbon == '_':
             self.state = self.fifth_condition
             self.direction_of_first_ribbon, self.direction_of_third_ribbon = '.', '<'
@@ -76,6 +76,7 @@ class mt_for_multi_tape:
         elif self.letter_on_first_ribbon in ('a', 'c', '_'):
             self.direction_of_first_ribbon, self.direction_of_second_ribbon, self.direction_of_third_ribbon = '<', '<', '<'
             self.state = self.second_condition
+        self.letter_on_first_ribbon = '_'
 
     def fourth_condition(self):
         """
@@ -84,12 +85,13 @@ class mt_for_multi_tape:
         """
         self.number_state = '4'
         if self.letter_on_first_ribbon == 'b':
-            self.state = self.ninth_condition
+            self.state = self.eight_condition
             self.letter_on_third_ribbon = '1'
             self.direction_of_third_ribbon = '>'
         elif self.letter_on_first_ribbon in ('a', 'c', '_'):
             self.direction_of_first_ribbon, self.direction_of_second_ribbon, self.direction_of_third_ribbon = '<', '<', '<'
             self.state = self.second_condition
+        self.letter_on_first_ribbon = '_'
 
     def fifth_condition(self):
         """
@@ -120,8 +122,8 @@ class mt_for_multi_tape:
                 self.direction_of_first_ribbon, self.direction_of_second_ribbon, self.direction_of_third_ribbon = '<', '.', '<'
                 self.state = self.second_condition
         elif self.letter_on_third_ribbon == '_' and self.letter_on_second_ribbon == '_':
-            self.direction_of_second_ribbon, self.direction_of_first_ribbon = '.', '<'
-            self.state = self.eigth_condition
+            self.letter_on_first_ribbon = '1'
+            self.direction_of_second_ribbon, self.direction_of_first_ribbon = '.', 'stop'
         elif self.letter_on_third_ribbon == '_' and self.letter_on_second_ribbon == '1':
             self.direction_of_second_ribbon, self.direction_of_first_ribbon = '<', '<'
             self.state = self.second_condition
@@ -141,15 +143,11 @@ class mt_for_multi_tape:
             self.direction_of_first_ribbon, self.direction_of_second_ribbon, self.direction_of_third_ribbon = '<', '.', '<'
             self.state = self.second_condition
 
-    def eigth_condition(self):
-        self.number_state = '8'
-        if self.letter_on_first_ribbon != '_':
-            self.letter_on_first_ribbon = '_'
-        elif self.letter_on_first_ribbon == '_':
-            self.letter_on_first_ribbon = '1'
-            self.direction_of_first_ribbon = 'stop'
-
-    def ninth_condition(self):
+    def eight_condition(self):
+        """
+                Переходим в состояния с буквой C, если встречаем букву A
+            переходим в состояние 2, иначе в 1.
+        """
         self.number_state = '9'
         self.direction_of_first_ribbon = '>'
         if self.letter_on_first_ribbon == 'c':
@@ -252,7 +250,7 @@ class mt_for_multi_tape:
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('adadadadcbcb_', bot=False)
+    mt.heart('adadcb_', bot=False)
     print(mt.result_word)
     pass
     # тест
