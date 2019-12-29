@@ -14,7 +14,7 @@ def generate():
         time.sleep(.001)    # задержка чтоб было легче дышать машине.
         # run(word + ''.join(reversed(word)), True, False)  # заносим сгенерированное слово в функцию решения задачи
         run(word + ''.join(reversed(word)), True, True)  # заносим сгенерированное слово в функцию решения задачи
-        word = 'a' * i + 'b' * i + 'c' * i
+        word = 'ad' * i * 2 + 'cd' * i
         i += 1
 
 

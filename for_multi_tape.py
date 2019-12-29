@@ -30,7 +30,7 @@ class mt_for_multi_tape:
         elif self.letter_on_first_ribbon == '_':
             self.state = self.fifth_condition
             self.direction_of_first_ribbon, self.direction_of_third_ribbon = '.', '<'
-        elif self.letter_on_first_ribbon == 'd':
+        elif self.letter_on_first_ribbon == 'd' or self.letter_on_first_ribbon == 'b':
             self.direction_of_first_ribbon, self.direction_of_second_ribbon, self.direction_of_third_ribbon = '<', '<', '<'
             self.state = self.second_condition
 
@@ -81,7 +81,7 @@ class mt_for_multi_tape:
             ставим единицу не на вторую ленту а на третью.
         """
         self.number_state = '4'
-        if self.letter_on_first_ribbon == 'd':
+        if self.letter_on_first_ribbon == 'b':
             self.state = self.first_condition
             self.letter_on_third_ribbon = '1'
             self.direction_of_third_ribbon = '>'
@@ -236,7 +236,7 @@ class mt_for_multi_tape:
 
 if __name__ == '__main__':
     mt = mt_for_multi_tape()
-    mt.heart('adadadadcdсd_', bot=False)
+    mt.heart('adadcb_', bot=False)
     print(mt.result_word)
     pass
     # тест
